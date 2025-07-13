@@ -50,25 +50,6 @@
         .is-visible .image-scroll-zoom {
             transform: scale(1.05);
         }
-        .sticky-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-            min-height: 150vh;
-        }
-        .sticky-element {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .scrolling-content {
-            padding-top: 25vh;
-            padding-bottom: 25vh;
-        }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -147,19 +128,19 @@
         </section>
 
         <!-- Craftsmanship Section (Sticky Scroll) -->
-        <section id="craftsmanship" class="bg-black py-20">
+        <section id="craftsmanship" class="bg-black py-12 md:py-20">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-20">
+                <div class="text-center mb-12 md:mb-20">
                      <h2 class="text-4xl md:text-7xl font-bold animate-on-scroll">The Soul of the Craft.</h2>
                 </div>
-                <div class="sticky-container">
-                    <div class="sticky-element">
-                        <div class="w-full h-full p-8">
-                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-full object-cover rounded-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-start">
+                    <div class="lg:sticky top-0 h-auto lg:h-screen flex items-center justify-center">
+                        <div class="w-full h-full p-0 md:p-8 mb-12 lg:mb-0">
+                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-auto lg:h-full object-cover rounded-2xl">
                         </div>
                     </div>
-                    <div class="scrolling-content text-left">
-                        <div class="space-y-48">
+                    <div class="text-left lg:pt-[25vh] lg:pb-[25vh]">
+                        <div class="space-y-24 lg:space-y-48">
                             <div class="animate-on-scroll">
                                 <h3 class="text-3xl font-bold mb-4">Generations of Skill</h3>
                                 <p class="text-lg text-gray-400">Each Indikaara rug is the culmination of knowledge passed down through generations. Our master artisans in rural India use age-old techniques, ensuring every knot is tied with intention and purpose. This isn't just a process; it's a living heritage.</p>
