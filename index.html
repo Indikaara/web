@@ -128,31 +128,34 @@
         </section>
 
         <!-- Craftsmanship Section (Sticky Scroll) -->
-        <section id="craftsmanship" class="bg-black py-12 md:py-20">
+        <section id="craftsmanship" class="bg-black">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12 md:mb-20">
-                     <h2 class="text-4xl md:text-7xl font-bold animate-on-scroll">The Soul of the Craft.</h2>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-start">
-                    <div class="lg:sticky top-0 h-auto lg:h-screen flex items-center justify-center">
-                        <div class="w-full h-full p-0 md:p-8 mb-12 lg:mb-0">
-                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-auto lg:h-full object-cover rounded-2xl">
+                <!-- This container will manage the sticky and scrolling elements -->
+                <div class="relative h-[300vh]">
+                    <!-- Sticky Image Background -->
+                    <div class="sticky top-0 h-screen flex items-center justify-center">
+                        <div class="w-full max-w-4xl h-[80vh] relative">
+                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-full object-cover rounded-2xl">
+                            <div class="absolute inset-0 bg-black/60 rounded-2xl"></div>
                         </div>
                     </div>
-                    <div class="text-left lg:pt-[25vh] lg:pb-[25vh]">
-                        <div class="space-y-24 lg:space-y-48">
-                            <div class="animate-on-scroll">
-                                <h3 class="text-3xl font-bold mb-4">Generations of Skill</h3>
-                                <p class="text-lg text-gray-400">Each Indikaara rug is the culmination of knowledge passed down through generations. Our master artisans in rural India use age-old techniques, ensuring every knot is tied with intention and purpose. This isn't just a process; it's a living heritage.</p>
-                            </div>
-                            <div class="animate-on-scroll">
-                                <h3 class="text-3xl font-bold mb-4">The Finest Materials</h3>
-                                <p class="text-lg text-gray-400">We believe a timeless rug begins with timeless materials. We source the highest quality natural fibers, from lustrous silk to durable, hand-spun wool. The richness of our colors comes from traditional, natural dyes that are both vibrant and sustainable.</p>
-                            </div>
-                            <div class="animate-on-scroll">
-                                <h3 class="text-3xl font-bold mb-4">A Unique Story</h3>
-                                <p class="text-lg text-gray-400">No two handcrafted rugs are exactly alike. Each piece carries the subtle variations and unique touch of the weaver who created it. When you bring an Indikaara rug into your home, you are not just acquiring a beautiful object, but a unique story woven in thread.</p>
-                            </div>
+
+                    <!-- Absolutely Positioned Scrolling Text -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-around text-center z-10 p-6">
+                        <div class="max-w-2xl animate-on-scroll">
+                            <h2 class="text-4xl md:text-7xl font-bold">The Soul of the Craft.</h2>
+                        </div>
+                        <div class="max-w-lg animate-on-scroll">
+                            <h3 class="text-3xl font-bold mb-4">Generations of Skill</h3>
+                            <p class="text-lg text-gray-300">Each Indikaara rug is the culmination of knowledge passed down through generations. Our master artisans in rural India use age-old techniques, ensuring every knot is tied with intention and purpose. This isn't just a process; it's a living heritage.</p>
+                        </div>
+                        <div class="max-w-lg animate-on-scroll">
+                            <h3 class="text-3xl font-bold mb-4">The Finest Materials</h3>
+                            <p class="text-lg text-gray-300">We believe a timeless rug begins with timeless materials. We source the highest quality natural fibers, from lustrous silk to durable, hand-spun wool. The richness of our colors comes from traditional, natural dyes that are both vibrant and sustainable.</p>
+                        </div>
+                        <div class="max-w-lg animate-on-scroll">
+                            <h3 class="text-3xl font-bold mb-4">A Unique Story</h3>
+                            <p class="text-lg text-gray-300">No two handcrafted rugs are exactly alike. Each piece carries the subtle variations and unique touch of the weaver who created it. When you bring an Indikaara rug into your home, you are not just acquiring a beautiful object, but a unique story woven in thread.</p>
                         </div>
                     </div>
                 </div>
