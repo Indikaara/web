@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -16,6 +16,9 @@
         }
         .font-calligraphy {
             font-family: 'Great Vibes', cursive;
+        }
+        .font-display { /* New font for headings */
+            font-family: 'Playfair Display', serif;
         }
         .section-canvas {
             min-height: 100vh;
@@ -29,14 +32,17 @@
         .header-scrolled {
             background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added subtle shadow */
         }
         .btn-primary {
-            background-color: #2997FF;
+            background-color: #A0522D; /* Earthy brown for premium feel */
             color: white;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #0077ED;
+            background-color: #8B4513; /* Darker brown on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
         .animate-on-scroll {
             opacity: 0;
@@ -51,7 +57,7 @@
             transition: transform 1.2s ease-out;
         }
         .is-visible .image-scroll-zoom {
-            transform: scale(1.05);
+            transform: scale(1.02); /* Slightly less aggressive zoom */
         }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -60,111 +66,117 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        /* Custom scroll snap for reviews */
+        .scroll-snap-x {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* For smoother iOS scrolling */
+        }
+        .scroll-snap-x > * {
+            scroll-snap-align: center;
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-6 h-16 flex justify-between items-center text-sm">
-            <a href="#" class="font-calligraphy text-4xl text-white">Indikaara</a>
+            <a href="#" class="font-calligraphy text-4xl text-white tracking-wider">Indikaara</a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#collection-persian" class="text-gray-300 hover:text-white transition-colors">Persian</a>
-                <a href="#collection-new" class="text-gray-300 hover:text-white transition-colors">New Arrivals</a>
-                <a href="#craftsmanship" class="text-gray-300 hover:text-white transition-colors">Craftsmanship</a>
-                <a href="#reviews" class="text-gray-300 hover:text-white transition-colors">Reviews</a>
+                <a href="#collection-persian" class="text-gray-300 hover:text-white transition-colors relative group">
+                    Persian
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
+                <a href="#collection-new" class="text-gray-300 hover:text-white transition-colors relative group">
+                    New Arrivals
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
+                <a href="#craftsmanship" class="text-gray-300 hover:text-white transition-colors relative group">
+                    Craftsmanship
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
+                <a href="#reviews" class="text-gray-300 hover:text-white transition-colors relative group">
+                    Reviews
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
             </nav>
             <div>
-                <a href="#" class="btn-primary font-semibold py-1.5 px-4 rounded-full text-xs">Shop</a>
+                <a href="/shop" class="btn-primary font-semibold py-2 px-6 rounded-full text-sm shadow-md hover:shadow-lg">Shop Now</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="h-screen flex items-center justify-center text-center bg-black relative">
             <div class="absolute inset-0 z-0">
-                <img src="assets/hero-background.jpg" alt="Artisans working together on a large, intricate handcrafted rug" class="w-full h-full object-cover">
+                <img src="assets/hero-background.jpg" alt="Artisans working together on a large, intricate handcrafted rug" class="w-full h-full object-cover" loading="eager">
             </div>
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-            <div class="relative z-10">
-                <h1 class="text-5xl md:text-8xl font-bold leading-tight">The Modern Heirloom.</h1>
-                <p class="mt-4 text-xl md:text-2xl text-gray-200">Where artistry and legacy are woven into one.</p>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="relative z-10 p-4 md:p-8">
+                <h1 class="text-5xl md:text-8xl font-display font-bold leading-tight drop-shadow-xl text-white">The Modern Heirloom.</h1>
+                <p class="mt-4 text-xl md:text-2xl text-gray-200 drop-shadow-lg">Where artistry and legacy are woven into one.</p>
+                <a href="/shop" class="mt-10 inline-block btn-primary py-3 px-10 text-lg font-semibold rounded-full shadow-2xl hover:shadow-xl transform hover:scale-105">Discover Our Rugs</a>
             </div>
         </section>
 
-        <!-- Intro Section -->
         <section class="section-canvas relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                    <!-- Make sure the path to your video is correct -->
+                <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="assets/video-fallback.jpg">
                     <source src="assets/Video_Generated_Ready_Now_.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    <source src="assets/Video_Generated_Ready_Now_.webm" type="video/webm"> Your browser does not support the video tag.
                 </video>
             </div>
             <div class="absolute inset-0 bg-black/60 z-10"></div>
-             <h2 class="text-4xl md:text-6xl font-bold max-w-4xl animate-on-scroll relative z-20">A new definition of luxury. Crafted by hand, designed for life.</h2>
+            <h2 class="text-4xl md:text-6xl font-display font-bold max-w-4xl animate-on-scroll relative z-20 px-4 md:px-0">A new definition of luxury. Crafted by hand, designed for life.</h2>
         </section>
 
-        <!-- Persian Collection -->
         <section id="collection-persian" class="section-canvas md:bg-white overflow-hidden relative">
-            <!-- Background for mobile view -->
             <div class="absolute inset-0 z-0 md:hidden">
-                <img src="assets/Persian_collection.JPG" alt="AI Generated image of a vibrant Persian rug" class="w-full h-full object-cover">
+                <img src="assets/Persian_collection.JPG" alt="AI Generated image of a vibrant Persian rug" class="w-full h-full object-cover" loading="lazy">
             </div>
             <div class="absolute inset-0 bg-black/60 z-10 md:hidden"></div>
 
-            <!-- Content -->
-            <div class="relative z-20 animate-on-scroll text-white md:text-black">
-                <h2 class="text-4xl md:text-7xl font-bold">Persian Collection</h2>
-                <p class="mt-4 text-xl md:text-2xl text-gray-200 md:text-gray-700">History Woven by Hands.</p>
-                <a href="#" class="text-lg text-blue-400 md:text-blue-600 hover:underline mt-4 inline-block">Explore the collection &rarr;</a>
+            <div class="relative z-20 animate-on-scroll text-white md:text-black px-4 md:px-0">
+                <h2 class="text-4xl md:text-7xl font-display font-bold">Persian Collection</h2>
+                <p class="mt-4 text-xl md:text-2xl text-gray-200 md:text-gray-700 max-w-2xl mx-auto">Immerse yourself in the timeless beauty and rich heritage of our hand-knotted Persian rugs, each a masterpiece of tradition.</p>
+                <a href="/collections/persian" class="text-lg text-blue-400 md:text-blue-600 hover:underline mt-6 inline-block font-medium">Explore the collection &rarr;</a>
             </div>
             <div class="relative z-20 w-full max-w-6xl mt-16 animate-on-scroll hidden md:block">
-                 <img src="assets/Persian_collection.JPG" alt="AI Generated image of a vibrant Persian rug" class="w-full h-auto rounded-2xl shadow-2xl image-scroll-zoom">
+                <img src="assets/Persian_collection.JPG" alt="AI Generated image of a vibrant Persian rug" class="w-full h-auto rounded-2xl shadow-2xl image-scroll-zoom" loading="lazy">
             </div>
         </section>
 
-        <!-- New Arrivals -->
         <section id="collection-new" class="section-canvas bg-black overflow-hidden">
-            <div class="animate-on-scroll">
-                <h2 class="text-4xl md:text-7xl font-bold">New Arrivals</h2>
-                <p class="mt-4 text-xl md:text-2xl text-gray-300">Fresh designs, timeless craft.</p>
-                 <a href="#" class="text-lg text-blue-500 hover:underline mt-4 inline-block">See what's new &rarr;</a>
+            <div class="animate-on-scroll px-4 md:px-0">
+                <h2 class="text-4xl md:text-7xl font-display font-bold">New Arrivals</h2>
+                <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">Discover contemporary designs and fresh perspectives, meticulously crafted to complement modern living spaces.</p>
+                <a href="/collections/new-arrivals" class="text-lg text-blue-500 hover:underline mt-6 inline-block font-medium">See what's new &rarr;</a>
             </div>
-             <div class="w-full max-w-6xl mt-16 animate-on-scroll">
-                 <img src="assets/new-arrivals.jpg" alt="AI Generated image of a modern rug from the new arrivals collection" class="w-full h-auto rounded-2xl shadow-2xl image-scroll-zoom">
+            <div class="w-full max-w-6xl mt-16 animate-on-scroll">
+                <img src="assets/new-arrivals.jpg" alt="AI Generated image of a modern rug from the new arrivals collection" class="w-full h-auto rounded-2xl shadow-2xl image-scroll-zoom" loading="lazy">
             </div>
         </section>
 
-        <!-- Craftsmanship Section (Sticky Scroll) -->
         <section id="craftsmanship" class="bg-black">
             <div class="container mx-auto px-6">
-                <!-- This container will manage the sticky and scrolling elements -->
                 <div class="relative h-[300vh]">
-                    <!-- Sticky Image Background -->
                     <div class="sticky top-0 h-screen flex items-center justify-center">
                         <div class="w-full max-w-4xl h-[80vh] relative">
-                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-full object-cover rounded-2xl">
+                            <img src="assets/craftsmanship-hands.jpg" alt="AI Generated close-up of an artisan's hands weaving a rug" class="w-full h-full object-cover rounded-2xl shadow-2xl" loading="lazy">
                             <div class="absolute inset-0 bg-black/60 rounded-2xl"></div>
                         </div>
                     </div>
 
-                    <!-- Absolutely Positioned Scrolling Text -->
                     <div class="absolute inset-0 flex flex-col items-center justify-around text-center z-10 p-6">
-                        <div class="max-w-2xl animate-on-scroll">
-                            <h2 class="text-4xl md:text-7xl font-bold">The Soul of the Craft.</h2>
+                        <div class="max-w-2xl animate-on-scroll pt-[15vh]"> <h2 class="text-4xl md:text-7xl font-display font-bold">The Soul of the Craft.</h2>
                         </div>
-                        <div class="max-w-lg animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-4">Generations of Skill</h3>
+                        <div class="max-w-lg animate-on-scroll pb-[5vh]"> <h3 class="text-3xl font-display font-bold mb-4">Generations of Skill</h3>
                             <p class="text-lg text-gray-300">Each Indikaara rug is the culmination of knowledge passed down through generations. Our master artisans in rural India use age-old techniques, ensuring every knot is tied with intention and purpose. This isn't just a process; it's a living heritage.</p>
                         </div>
-                        <div class="max-w-lg animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-4">The Finest Materials</h3>
+                        <div class="max-w-lg animate-on-scroll pb-[5vh]">
+                            <h3 class="text-3xl font-display font-bold mb-4">The Finest Materials</h3>
                             <p class="text-lg text-gray-300">We believe a timeless rug begins with timeless materials. We source the highest quality natural fibers, from lustrous silk to durable, hand-spun wool. The richness of our colors comes from traditional, natural dyes that are both vibrant and sustainable.</p>
                         </div>
-                        <div class="max-w-lg animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-4">A Unique Story</h3>
+                        <div class="max-w-lg animate-on-scroll pb-[15vh]"> <h3 class="text-3xl font-display font-bold mb-4">A Unique Story</h3>
                             <p class="text-lg text-gray-300">No two handcrafted rugs are exactly alike. Each piece carries the subtle variations and unique touch of the weaver who created it. When you bring an Indikaara rug into your home, you are not just acquiring a beautiful object, but a unique story woven in thread.</p>
                         </div>
                     </div>
@@ -172,82 +184,86 @@
             </div>
         </section>
 
-        <!-- Customer Reviews Section -->
         <section id="reviews" class="bg-white text-black py-20 overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-7xl font-bold animate-on-scroll">Voices of Indikaara</h2>
+                    <h2 class="text-4xl md:text-7xl font-display font-bold animate-on-scroll">Voices of Indikaara</h2>
                     <p class="mt-4 text-xl md:text-2xl text-gray-700 animate-on-scroll">What our customers are saying about us.</p>
                 </div>
-                <div class="flex overflow-x-auto space-x-8 pb-8 hide-scrollbar">
-                    <!-- Review 1 -->
-                    <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl animate-on-scroll">
-                        <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
-                        <p class="text-lg italic text-gray-800">"The rug is the soul of our living room. The quality is exceptional, and you can feel the story in every thread. Truly a work of art."</p>
-                        <p class="mt-6 font-semibold text-gray-600">- Anya S., Mumbai</p>
+                <div class="relative">
+                    <div class="flex overflow-x-auto space-x-8 pb-8 hide-scrollbar scroll-snap-x px-4 md:px-0">
+                        <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl shadow-lg animate-on-scroll">
+                            <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
+                            <p class="text-lg italic text-gray-800">"The rug is the soul of our living room. The quality is exceptional, and you can feel the story in every thread. Truly a work of art."</p>
+                            <p class="mt-6 font-semibold text-gray-600">- Anya S., Mumbai</p>
+                        </div>
+                        <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.1s;">
+                            <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
+                            <p class="text-lg italic text-gray-800">"I was looking for something unique and found it at Indikaara. The customer service was fantastic, and the rug is even more beautiful in person."</p>
+                            <p class="mt-6 font-semibold text-gray-600">- Rohan G., Delhi</p>
+                        </div>
+                        <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.2s;">
+                            <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
+                            <p class="text-lg italic text-gray-800">"An heirloom piece that has completely transformed our bedroom. Knowing it was ethically sourced makes it even more special."</p>
+                            <p class="mt-6 font-semibold text-gray-600">- Priya P., Bangalore</p>
+                        </div>
+                        <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.3s;">
+                            <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
+                            <p class="text-lg italic text-gray-800">"The colors are so vibrant and rich. It's clear that this was made with incredible care and attention to detail. Worth every penny."</p>
+                            <p class="mt-6 font-semibold text-gray-600">- Vikram M., Chennai</p>
+                        </div>
                     </div>
-                    <!-- Review 2 -->
-                    <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl animate-on-scroll" style="animation-delay: 0.1s;">
-                        <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
-                        <p class="text-lg italic text-gray-800">"I was looking for something unique and found it at Indikara. The customer service was fantastic, and the rug is even more beautiful in person."</p>
-                        <p class="mt-6 font-semibold text-gray-600">- Rohan G., Delhi</p>
                     </div>
-                    <!-- Review 3 -->
-                    <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl animate-on-scroll" style="animation-delay: 0.2s;">
-                        <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
-                        <p class="text-lg italic text-gray-800">"An heirloom piece that has completely transformed our bedroom. Knowing it was ethically sourced makes it even more special."</p>
-                        <p class="mt-6 font-semibold text-gray-600">- Priya P., Bangalore</p>
-                    </div>
-                     <!-- Review 4 -->
-                    <div class="flex-shrink-0 w-80 md:w-96 bg-gray-100 p-8 rounded-2xl animate-on-scroll" style="animation-delay: 0.3s;">
-                        <div class="text-yellow-500 text-2xl mb-4">★★★★★</div>
-                        <p class="text-lg italic text-gray-800">"The colors are so vibrant and rich. It's clear that this was made with incredible care and attention to detail. Worth every penny."</p>
-                        <p class="mt-6 font-semibold text-gray-600">- Vikram M., Chennai</p>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer class="bg-gray-900 text-gray-400 text-xs py-12">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
                     <div>
                         <h4 class="font-semibold text-white mb-3">Shop</h4>
                         <ul>
-                            <li class="mb-2"><a href="#" class="hover:text-white">All Collections</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">New Arrivals</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Persian</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Custom</a></li>
+                            <li class="mb-2"><a href="/collections" class="hover:text-white transition-colors">All Collections</a></li>
+                            <li class="mb-2"><a href="/collections/new-arrivals" class="hover:text-white transition-colors">New Arrivals</a></li>
+                            <li class="mb-2"><a href="/collections/persian" class="hover:text-white transition-colors">Persian</a></li>
+                            <li class="mb-2"><a href="/custom" class="hover:text-white transition-colors">Custom</a></li>
                         </ul>
                     </div>
-                     <div>
+                    <div>
                         <h4 class="font-semibold text-white mb-3">About Indikaara</h4>
                         <ul>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Our Story</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Craftsmanship</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Ethical Sourcing</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Press</a></li>
+                            <li class="mb-2"><a href="/about" class="hover:text-white transition-colors">Our Story</a></li>
+                            <li class="mb-2"><a href="/craftsmanship" class="hover:text-white transition-colors">Craftsmanship</a></li>
+                            <li class="mb-2"><a href="/ethical-sourcing" class="hover:text-white transition-colors">Ethical Sourcing</a></li>
+                            <li class="mb-2"><a href="/press" class="hover:text-white transition-colors">Press</a></li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="font-semibold text-white mb-3">Account</h4>
                         <ul>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Manage Your Account</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Order Status</a></li>
+                            <li class="mb-2"><a href="/account" class="hover:text-white transition-colors">Manage Your Account</a></li>
+                            <li class="mb-2"><a href="/order-status" class="hover:text-white transition-colors">Order Status</a></li>
                         </ul>
                     </div>
-                     <div>
+                    <div>
                         <h4 class="font-semibold text-white mb-3">Customer Service</h4>
                         <ul>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Contact Us</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Shipping</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">Returns</a></li>
-                            <li class="mb-2"><a href="#" class="hover:text-white">FAQ</a></li>
+                            <li class="mb-2"><a href="/contact" class="hover:text-white transition-colors">Contact Us</a></li>
+                            <li class="mb-2"><a href="/shipping" class="hover:text-white transition-colors">Shipping</a></li>
+                            <li class="mb-2"><a href="/returns" class="hover:text-white transition-colors">Returns</a></li>
+                            <li class="mb-2"><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
                         </ul>
                     </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <h4 class="font-semibold text-white mb-3">Connect With Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Pinterest"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pinterest"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10c4.95 0 9.096-3.877 9.873-8.835L19 12c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4c1.1 0 2.1.45 2.828 1.172L12 9V2zM12 18c-3.313 0-6-2.687-6-6s2.687-6 6-6 6 2.687 6 6-2.687 6-6 6z"></path></svg></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="border-t border-gray-800 mt-8 pt-8">
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center md:text-left">
                     <p>Copyright &copy; 2025 Indikaara Inc. All rights reserved.</p>
                 </div>
             </div>
@@ -268,13 +284,31 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                    } else {
+                        // Optional: remove is-visible when element leaves viewport
+                        // entry.target.classList.remove('is-visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }); // Added rootMargin for better trigger
 
             animatedElements.forEach(el => {
                 observer.observe(el);
             });
+
+            // Optional: Review Carousel Navigation (uncomment HTML buttons if using)
+            // const reviewsCarousel = document.getElementById('reviews-carousel');
+            // const prevReviewBtn = document.getElementById('prev-review');
+            // const nextReviewBtn = document.getElementById('next-review');
+
+            // if (reviewsCarousel && prevReviewBtn && nextReviewBtn) {
+            //     const scrollAmount = reviewsCarousel.children[0].offsetWidth + 32; // Card width + gap (8*4=32px for space-x-8)
+            //     prevReviewBtn.addEventListener('click', () => {
+            //         reviewsCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            //     });
+            //     nextReviewBtn.addEventListener('click', () => {
+            //         reviewsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            //     });
+            // }
         });
     </script>
 
