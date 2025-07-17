@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Collections - Indikaara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9; /* Light background for shop */
+            color: #1a1a1a;
+        }
+        .font-calligraphy {
+            font-family: 'Great Vibes', cursive;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .btn-primary {
+            background-color: #A0522D;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8B4513;
+            transform: translateY(-2px);
+        }
+        #cart-panel {
+            transition: transform 0.4s ease-in-out;
+        }
+        .cart-item-quantity input {
+            background-color: #e5e7eb;
+            color: #1a1a1a;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .carousel-container {
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            flex: 0 0 100%;
+        }
+        @media (min-width: 768px) {
+            .carousel-slide {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-slide {
+                flex: 0 0 33.3333%;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="main-header" class="sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 h-16 flex justify-between items-center text-sm">
+            <a href="index.html" class="font-calligraphy text-4xl text-black tracking-wider">Indikaara</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-black transition-colors">Home</a>
+                <a href="shop.html" class="text-black font-semibold transition-colors">Our Collections</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="cart-button" class="relative btn-primary font-semibold py-2 px-6 rounded-full text-sm shadow-md hover:shadow-lg">
+                    Cart
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="shop-hero" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-7xl font-display font-bold">Our Collections</h1>
+                <p class="mt-4 text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">A curated selection of India's finest rugs, handcrafted articles, and home decor, ready for the global stage.</p>
+            </div>
+        </section>
+
+        <!-- Sale Carousel Section -->
+        <section id="sale-carousel" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-8 text-center">Special Offers</h2>
+                <div class="carousel-container overflow-hidden">
+                    <div id="carousel-track" class="carousel-track">
+                        <!-- Sale items injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Catalog Section -->
+        <section id="catalog" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center">All Products</h2>
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Product cards will be injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 text-xs py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>Copyright &copy; 2025 Indikaara Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Panel -->
+    <div id="cart-panel-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div id="cart-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white text-black shadow-2xl transform translate-x-full">
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                    <h2 class="text-2xl font-semibold font-display">Your Cart</h2>
+                    <button id="close-cart-button" class="text-gray-500 hover:text-black text-3xl">&times;</button>
+                </div>
+                <div id="cart-items" class="flex-grow p-6 overflow-y-auto">
+                    <!-- Cart items injected here -->
+                </div>
+                <div class="p-6 border-t border-gray-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg text-gray-600">Subtotal</span>
+                        <span id="cart-subtotal" class="text-xl font-semibold">₹0.00</span>
+                    </div>
+                    <button class="w-full btn-primary py-3 rounded-lg font-semibold">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const products = [
+                { id: 1, name: 'Royal Jaipur Dhurrie', price: 45000, image: 'assets/dhurri-rug.jpg', on_sale: true, old_price: 52000 },
+                { id: 2, name: 'Modern Abstract Rug', price: 28000, image: 'https://placehold.co/600x400/2c3e50/ffffff?text=Abstract+Rug', on_sale: false },
+                { id: 3, name: 'Hand-Knotted Silk', price: 75000, image: 'https://placehold.co/600x400/8e44ad/ffffff?text=Silk+Rug', on_sale: false },
+                { id: 4, name: 'Jaipur Bloom Rug', price: 32000, image: 'https://placehold.co/600x400/16a085/ffffff?text=Bloom+Rug', on_sale: false },
+                { id: 5, name: 'Minimalist Weave', price: 18500, image: 'https://placehold.co/600x400/f39c12/ffffff?text=Minimalist+Weave', on_sale: true, old_price: 22000 },
+                { id: 6, name: 'Heritage Kilim', price: 38000, image: 'https://placehold.co/600x400/c0392b/ffffff?text=Heritage+Kilim', on_sale: false },
+                { id: 7, name: 'Ornate Brass Vase', price: 8500, image: 'https://placehold.co/600x400/d35400/ffffff?text=Brass+Vase', on_sale: true, old_price: 10000 },
+                { id: 8, name: 'Carved Wooden Box', price: 6200, image: 'https://placehold.co/600x400/7f8c8d/ffffff?text=Wooden+Box', on_sale: false },
+            ];
+
+            let cart = JSON.parse(localStorage.getItem('indikaaraCart')) || [];
+
+            const productGrid = document.getElementById('product-grid');
+            const cartButton = document.getElementById('cart-button');
+            const cartPanelContainer = document.getElementById('cart-panel-container');
+            const cartPanel = document.getElementById('cart-panel');
+            const closeCartButton = document.getElementById('close-cart-button');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const carouselTrack = document.getElementById('carousel-track');
+
+            function saveCart() {
+                localStorage.setItem('indikaaraCart', JSON.stringify(cart));
+            }
+
+            function createProductCard(product) {
+                const saleBadge = product.on_sale ? `<div class="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">SALE</div>` : '';
+                const priceHTML = product.on_sale 
+                    ? `<p class="text-lg text-red-600 font-semibold">₹${product.price.toLocaleString('en-IN')} <del class="text-gray-500 font-normal">₹${product.old_price.toLocaleString('en-IN')}</del></p>`
+                    : `<p class="text-lg text-gray-800 font-semibold">₹${product.price.toLocaleString('en-IN')}</p>`;
+                
+                return `
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <div class="relative">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                            ${saleBadge}
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-black mb-2 flex-grow">${product.name}</h3>
+                            ${priceHTML}
+                            <button data-id="${product.id}" class="add-to-cart-btn mt-4 w-full btn-primary font-semibold py-2 rounded-lg text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            function renderProducts() {
+                if(productGrid) {
+                    productGrid.innerHTML = '';
+                    products.forEach(product => {
+                        productGrid.innerHTML += createProductCard(product);
+                    });
+                }
+            }
+
+            function renderSaleCarousel() {
+                if(carouselTrack) {
+                    carouselTrack.innerHTML = '';
+                    const saleItems = products.filter(p => p.on_sale);
+                    saleItems.forEach(product => {
+                        const slide = document.createElement('div');
+                        slide.className = 'carousel-slide p-4';
+                        slide.innerHTML = createProductCard(product);
+                        carouselTrack.appendChild(slide);
+                    });
+                }
+            }
+
+            function renderCart() {
+                cartItemsContainer.innerHTML = '';
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const cartItemHTML = `<div class="flex items-center justify-between mb-4" data-id="${item.id}"><div class="flex items-center"><img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4"><div><p class="font-semibold">${item.name}</p><p class="text-gray-500 text-sm">₹${item.price.toLocaleString('en-IN')}</p></div></div><div class="flex items-center cart-item-quantity"><button class="quantity-change text-lg px-2" data-change="-1">-</button><input type="text" value="${item.quantity}" class="w-10 text-center font-semibold rounded-md border border-gray-300" readonly><button class="quantity-change text-lg px-2" data-change="1">+</button><button class="remove-item text-red-500 ml-4 hover:text-red-400 text-2xl">&times;</button></div></div>`;
+                        cartItemsContainer.innerHTML += cartItemHTML;
+                    });
+                }
+                updateCartInfo();
+            }
+            
+            function updateCartInfo() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                if (totalItems > 0) {
+                    cartCount.textContent = totalItems;
+                    cartCount.classList.remove('hidden');
+                } else {
+                    cartCount.classList.add('hidden');
+                }
+                cartSubtotal.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+            }
+
+            function addToCart(productId) {
+                const product = products.find(p => p.id === productId);
+                const cartItem = cart.find(item => item.id === productId);
+
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                saveCart();
+                renderCart();
+            }
+
+            function changeQuantity(productId, change) {
+                const cartItem = cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.quantity += change;
+                    if (cartItem.quantity <= 0) {
+                        removeFromCart(productId);
+                    } else {
+                        saveCart();
+                        renderCart();
+                    }
+                }
+            }
+            
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                saveCart();
+                renderCart();
+            }
+
+            function toggleCart() {
+                cartPanelContainer.classList.toggle('hidden');
+                document.body.classList.toggle('overflow-hidden');
+                setTimeout(() => {
+                    cartPanel.classList.toggle('translate-x-full');
+                }, 10);
+            }
+
+            cartButton.addEventListener('click', toggleCart);
+            closeCartButton.addEventListener('click', toggleCart);
+            cartPanelContainer.addEventListener('click', (e) => {
+                if (e.target === cartPanelContainer) {
+                    toggleCart();
+                }
+            });
+
+            document.body.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const productId = parseInt(e.target.dataset.id);
+                    addToCart(productId);
+                }
+            });
+
+            cartItemsContainer.addEventListener('click', e => {
+                const target = e.target;
+                const parent = target.closest('.flex.items-center.justify-between');
+                if (!parent) return;
+                const productId = parseInt(parent.dataset.id);
+                if (target.classList.contains('quantity-change')) {
+                    const change = parseInt(target.dataset.change);
+                    changeQuantity(productId, change);
+                }
+                if (target.classList.contains('remove-item')) {
+                    removeFromCart(productId);
+                }
+            });
+
+            renderProducts();
+            renderSaleCarousel();
+            renderCart();
+        });
+    </script>
+</body>
+</html>
