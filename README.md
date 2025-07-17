@@ -1,6 +1,6 @@
 # Indikaara - Luxury Rugs Website
 
-[**Live Demo**](https://your-username.github.io/indikaara-website/)
+[**Live Demo**](https://indikaara.github.io/web/)
 
 This project is a modern, visually-driven, single-page website for **Indikaara**, a luxury brand specializing in handcrafted rugs. The design is heavily inspired by Apple's clean, minimalist, and immersive product pages, focusing on high-quality visuals and smooth animations to tell a story.
 
