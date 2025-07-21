@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Collections - Indikaara</title>
+    <title>Product Details - Indikaara</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000; /* Dark background for the entire page */
-            color: #fff; /* Light text color */
+            background-color: #000;
+            color: #fff;
         }
         .font-calligraphy {
             font-family: 'Great Vibes', cursive;
@@ -34,115 +34,63 @@
             transition: transform 0.4s ease-in-out;
         }
         .cart-item-quantity input {
-            background-color: #333; /* Darker input background for cart */
-            color: #fff; /* Light text for cart input */
+            background-color: #333;
+            color: #fff;
         }
 
-        /* Product Card Styling (Adjusted for Dark Theme) */
-        .product-card {
-            background-color: #1a1a1a; /* Dark card background */
-            color: #fff; /* Light text for card */
-            border-radius: 0.5rem; /* Consistent border-radius */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Darker shadow for dark background */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.7); /* More prominent hover shadow */
-        }
-        .product-card h3 {
-            color: #fff; /* Ensure heading is white */
-        }
-        .product-card p {
-            color: #d0d0d0; /* Lighter gray for paragraphs */
-        }
-        .product-card strong {
-            color: #fff; /* Strong tags are white */
-        }
-
-        /* Image container within product card for consistent sizing and object-fit */
-        .product-card-image-wrapper {
-            position: relative;
+        .product-image-container {
             width: 100%;
-            padding-bottom: 100%; /* 1:1 Aspect Ratio (Square container) */
+            padding-bottom: 100%; /* 1:1 Aspect Ratio (Square) */
+            position: relative;
             overflow: hidden;
-            background-color: #222; /* Dark background for image area */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background-color: #222; /* Dark placeholder background */
         }
-        .product-card-image-wrapper img {
+        .product-image-container img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* CHANGED: Ensure whole image is visible */
+            object-fit: cover;
             background-color: #333; /* Darker image background */
         }
 
-        .carousel-container { /* Keeping for potential future use or if present in featured section */
-            position: relative;
+        .product-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        .carousel-track { /* Keeping for potential future use or if present in featured section */
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+        .product-details-grid div strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #e0e0e0;
+            font-size: 0.95rem;
         }
-        .carousel-track::-webkit-scrollbar { /* Keeping for potential future use or if present in featured section */
-            display: none;
+        .product-details-grid div span {
+            color: #b0b0b0;
+            font-size: 0.9rem;
         }
-        .carousel-slide { /* Keeping for potential future use or if present in featured section */
-            flex: 0 0 90%;
-            scroll-snap-align: center;
-            padding: 0 1rem;
-        }
-        @media (min-width: 768px) { /* Keeping for potential future use or if present in featured section */
-            .carousel-slide {
-                flex: 0 0 45%;
-            }
-        }
-        @media (min-width: 1024px) { /* Keeping for potential future use or if present in featured section */
-            .carousel-slide {
-                flex: 0 0 30%;
-            }
-        }
-
-        .product-details-list { /* Keeping for robustness if card details become more complex */
-            list-style: none;
-            padding: 0;
+        .product-long-details ul {
+            list-style: disc;
+            padding-left: 1.5rem;
             margin-top: 0.5rem;
-            font-size: 0.875rem;
+        }
+        .product-long-details li {
+            margin-bottom: 0.5rem;
             color: #b0b0b0;
         }
-        .product-details-list li { /* Keeping for robustness if card details become more complex */
-            margin-bottom: 0.25rem;
-            line-height: 1.25;
+        .product-info-area p {
+            color: #e0e0e0;
         }
-        .product-details-list li strong { /* Keeping for robustness if card details become more complex */
+        .product-info-area h1, .product-info-area h3 {
             color: #fff;
-        }
-
-        /* Category Button Active State (Styling kept if re-enabled in future) */
-        .category-button {
-            background-color: #333; /* Dark background for inactive buttons */
-            color: #e0e0e0; /* Light text for inactive buttons */
-            border-color: #555; /* Subtle border */
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-        .category-button:hover {
-            background-color: #555; /* Darker hover */
-            color: #fff;
-        }
-        .category-button.active {
-            background-color: #A0522D; /* Primary brand color */
-            color: white;
-            font-weight: 600;
-            border-color: #A0522D; /* Match border to background */
         }
     </style>
 </head>
@@ -163,16 +111,14 @@
                     Enquiry List
                     <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
-                 <!-- Mobile Hamburger Icon for Shop page -->
-                <button id="mobile-menu-button-shop" class="md:hidden text-white ml-4 focus:outline-none">
+                 <button id="mobile-menu-button-detail" class="md:hidden text-white ml-4 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
-        <!-- Mobile Navigation Menu (Initially Hidden) for Shop page -->
-        <div id="mobile-menu-shop" class="hidden md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md pb-4 pt-2 text-center shadow-lg z-40">
+        <div id="mobile-menu-detail" class="hidden md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md pb-4 pt-2 text-center shadow-lg z-40">
             <nav class="flex flex-col items-center space-y-4 text-base">
                 <a href="index.html" class="text-gray-300 hover:text-white transition-colors py-2 block w-full">Home</a>
                 <a href="shop.html" class="text-white font-semibold py-2 block w-full">Our Collections</a>
@@ -183,41 +129,46 @@
         </div>
     </header>
 
-    <main>
-        <section id="shop-hero" class="py-20 bg-gray-950">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-7xl font-display font-bold text-white">Our Collections</h1>
-                <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">A curated selection of India's finest rugs, handcrafted articles, and home decor, ready for the global stage.</p>
-            </div>
-        </section>
+    <main class="py-8 md:py-12 lg:py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div id="product-detail-section" class="bg-gray-900 p-6 md:p-10 rounded-lg shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <div class="product-image-area">
+                    <div class="product-image-container">
+                        <img id="main-product-image" src="assets/placeholder.webp" alt="Product image">
+                    </div>
+                </div>
 
-        <!-- Category Filter Section (Removed from HTML as per request) -->
-        <!-- No longer needed -->
+                <div class="product-info-area text-left">
+                    <h1 id="product-name" class="text-3xl md:text-5xl font-display font-bold text-white mb-2"></h1>
+                    <p id="product-description" class="text-gray-300 leading-relaxed mb-6"></p>
+                    
+                    <div class="product-details-grid">
+                        <div><strong>Category</strong><span id="product-category"></span></div>
+                        <div><strong>Manufacturer</strong><span id="product-manufacturer"></span></div>
+                        <div><strong>Material</strong><span id="product-material"></span></div>
+                        <div><strong>Technique</strong><span id="product-weaving-technique"></span></div>
+                        <div><strong>Available Sizes</strong><span id="product-dimensions-available"></span></div>
+                        <div><strong>Colors</strong><span id="product-color"></span></div>
+                    </div>
 
-        <!-- Featured Products Carousel Section (HIDDEN as per request) -->
-        <section id="featured-carousel" class="py-16 bg-black hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-8 text-center text-white">Featured Products</h2>
-                <div class="carousel-container overflow-hidden">
-                    <div id="carousel-track" class="carousel-track -mx-4 md:-mx-6">
-                        <!-- Featured items injected here -->
+                    <div id="product-long-details" class="mt-8">
+                        <h3 class="text-xl font-semibold text-white mb-3">Additional Details:</h3>
+                        <ul id="product-details-list" class="product-long-details">
+                            </ul>
+                    </div>
+
+                    <div id="product-story" class="mt-8">
+                        <h3 class="text-xl font-semibold text-white mb-3">Our Story Behind This Piece:</h3>
+                        <p id="product-story-content" class="text-gray-300 leading-relaxed"></p> </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-700">
+                        <button id="add-to-enquiry-button" class="w-full btn-primary py-3 rounded-lg text-lg font-semibold">Add to Enquiry List</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Main Catalog Section -->
-        <section id="catalog" class="py-16 bg-black">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center text-white">Products</h2>
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Product cards will be injected here -->
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Footer (Consistent dark theme) -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
@@ -277,7 +228,6 @@
         </div>
     </footer>
 
-    <!-- Shopping Cart Panel (Now Enquiry List) -->
     <div id="cart-panel-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
         <div id="cart-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-gray-900 text-white shadow-2xl transform translate-x-full">
             <div class="flex flex-col h-full">
@@ -286,21 +236,21 @@
                     <button id="close-cart-button" class="text-gray-300 hover:text-white text-3xl">&times;</button>
                 </div>
                 <div id="cart-items" class="flex-grow p-6 overflow-y-auto">
-                    <!-- Cart items injected here -->
-                </div>
+                    </div>
                 <div class="p-6 border-t border-gray-700">
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-lg text-gray-300">Total Items for Enquiry</span>
                         <span id="cart-subtotal" class="text-xl font-semibold text-white">0</span>
                     </div>
-                    <button id="enquire-now-button" class="w-full btn-primary py-3 rounded-lg font-semibold">Enquire Now</button>
+                    <button id="enquire-now-button-cart" class="w-full btn-primary py-3 rounded-lg font-semibold">Enquire Now</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Your provided JSON data (this data should be consistent across all pages)
+        // Data should be consistent across shop.html and product-detail.html
+        // For simplicity, defining it here again. In a real app, you'd fetch this from a single source.
         const rawProductData = {
             products: [
                 {
@@ -379,8 +329,6 @@
             ],
         };
 
-        // Ensure these variables are in a scope accessible by all functions that need them
-        // Global variables and data processing
         const allProducts = [];
         rawProductData.products.forEach(category => {
             category.items.forEach(item => {
@@ -391,22 +339,18 @@
                     ...item,
                     price: itemPriceForCart,
                     displayPrice: itemPriceDisplay,
-                    // IMPORTANT: Process image paths here for local file viewing
-                    // Ensures "assets/..." instead of "/assets/..."
+                    // Ensure images are relative paths for local viewing
                     image: Array.isArray(item.image) ? item.image.map(path => path.startsWith('/') ? path.substring(1) : path) : [item.image.startsWith('/') ? item.image.substring(1) : item.image],
                     dimensions: item.dimensionsAvailable ? item.dimensionsAvailable.join(', ') : 'N/A',
                     technology: item.weavingTechnique,
-                    categoryName: item.category, // Use item.category for category name
+                    categoryName: category.category,
                     stock: item.stock !== undefined ? item.stock : 10
                 });
             });
         });
 
-
         let cart = JSON.parse(localStorage.getItem('indikaaraCart')) || [];
 
-        // DOM element references
-        const productGrid = document.getElementById('product-grid');
         const cartButton = document.getElementById('cart-button');
         const cartPanelContainer = document.getElementById('cart-panel-container');
         const cartPanel = document.getElementById('cart-panel');
@@ -414,50 +358,26 @@
         const cartItemsContainer = document.getElementById('cart-items');
         const cartCount = document.getElementById('cart-count');
         const cartSubtotal = document.getElementById('cart-subtotal');
-        const enquireNowButton = document.getElementById('enquire-now-button');
-        const mobileMenuButtonShop = document.getElementById('mobile-menu-button-shop');
-        const mobileMenuShop = document.getElementById('mobile-menu-shop');
+        const enquireNowButtonCart = document.getElementById('enquire-now-button-cart');
+        const mobileMenuButtonDetail = document.getElementById('mobile-menu-button-detail');
+        const mobileMenuDetail = document.getElementById('mobile-menu-detail');
 
-        // --- Start of Product Card Modification Function ---
-        function createProductCard(product) {
-            // Image path processing is already done when creating allProducts, so product.image[0] is already relative
-            const imageUrl = product.image && product.image.length > 0 ? product.image[0] : 'assets/placeholder.webp';
+        const mainProductImage = document.getElementById('main-product-image');
 
-            return `
-                <div class="product-card bg-gray-900 rounded-lg shadow-md overflow-hidden flex flex-col">
-                    <div class="product-card-image-wrapper">
-                        <img src="${imageUrl}" alt="${product.name}">
-                        ${product.stock <= 0 ? '<div class="absolute inset-0 bg-black/80 text-white flex items-center justify-center text-xl font-bold">Out of Stock</div>' : ''}
-                    </div>
-                    <div class="p-4 flex flex-col flex-grow text-left">
-                        <h3 class="text-xl font-display font-bold text-white mb-2 flex-grow">${product.name}</h3>
-                        <p class="text-gray-300 text-sm mb-1"><strong>Material:</strong> ${product.material || 'N/A'}</p>
-                        <p class="text-gray-300 text-sm mb-3"><strong>Size:</strong> ${product.dimensionsAvailable && product.dimensionsAvailable.length > 0 ? product.dimensionsAvailable.join(', ') : 'N/A'}</p>
-                        
-                        <a href="product-detail.html?id=${product.id}" class="view-details-btn mt-auto w-full btn-primary font-semibold py-2 rounded-lg text-sm text-center">View Details</a>
-                    </div>
-                </div>
-            `;
-        }
-        // --- End of Product Card Modification Function ---
 
-        // All other helper functions (renderProducts, renderCart, toggleCart, etc.)
-        // should also be defined *before* the DOMContentLoaded listener.
+        const productNameElem = document.getElementById('product-name');
+        const productDescriptionElem = document.getElementById('product-description');
+        const productCategoryElem = document.getElementById('product-category');
+        const productManufacturerElem = document.getElementById('product-manufacturer');
+        const productMaterialElem = document.getElementById('product-material');
+        const productWeavingTechniqueElem = document.getElementById('product-weaving-technique');
+        const productDimensionsAvailableElem = document.getElementById('product-dimensions-available');
+        const productColorElem = document.getElementById('product-color');
+        const productDetailsListElem = document.getElementById('product-details-list');
+        const productStoryElem = document.querySelector('#product-story p');
+        const addToEnquiryButton = document.getElementById('add-to-enquiry-button');
 
-        function renderProducts() {
-            if(productGrid) {
-                productGrid.innerHTML = '';
-                if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="text-center text-gray-300 col-span-full py-10">No products available.</p>';
-                } else {
-                    allProducts.forEach(product => {
-                        productGrid.innerHTML += createProductCard(product);
-                    });
-                }
-            }
-        }
 
-        // Functions for cart and enquiry list management
         function saveCart() {
             localStorage.setItem('indikaaraCart', JSON.stringify(cart));
         }
@@ -479,14 +399,10 @@
                 cartItemsContainer.innerHTML = '<p class="text-gray-300 text-center py-4">Your enquiry list is empty.</p>';
             } else {
                 cart.forEach(item => {
-                    const cartItemImageUrl = item.image && item.image.length > 0 ? item.image[0] : 'assets/placeholder.webp';
-                    // The image path processing is important here too
-                    const finalCartItemImageUrl = cartItemImageUrl.startsWith('/') ? cartItemImageUrl.substring(1) : cartItemImageUrl;
-
                     const cartItemHTML = `
                         <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-700 last:border-b-0" data-id="${item.id}">
                             <div class="flex items-center">
-                                <img src="${finalCartItemImageUrl}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4 shadow-sm">
+                                <img src="${item.image && item.image.length > 0 ? item.image[0] : 'assets/placeholder.webp'}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4 shadow-sm">
                                 <div>
                                     <p class="font-semibold text-white">${item.name}</p>
                                 </div>
@@ -590,15 +506,68 @@
             alert("Your enquiry request is being prepared. Please send the email that opens up.");
         }
 
+        // --- Product Detail Page Specific Functions ---
+        function loadProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
 
-        // Event Listeners for Shop Page
+            if (isNaN(productId)) {
+                document.getElementById('product-detail-section').innerHTML = '<p class="text-center text-red-500 text-xl font-bold">Product not found. <a href="shop.html" class="text-blue-400 hover:underline">Go back to shop</a></p>';
+                document.title = "Product Not Found";
+                return;
+            }
+
+            loadedProduct = allProducts.find(p => p.id === productId);
+
+            if (loadedProduct) {
+                document.title = `${loadedProduct.name} - Indikaara`;
+
+                productNameElem.textContent = loadedProduct.name;
+                // CHANGED: Assign description to its element
+                productDescriptionElem.textContent = loadedProduct.description || 'No description available.'; 
+                productCategoryElem.textContent = loadedProduct.categoryName || 'N/A';
+                productManufacturerElem.textContent = loadedProduct.manufacturer || 'N/A';
+                productMaterialElem.textContent = loadedProduct.material || 'N/A';
+                productWeavingTechniqueElem.textContent = loadedProduct.weavingTechnique || 'N/A';
+                productDimensionsAvailableElem.textContent = loadedProduct.dimensionsAvailable ? loadedProduct.dimensionsAvailable.join(', ') : 'N/A';
+                productColorElem.textContent = loadedProduct.color ? loadedProduct.color.join(', ') : 'N/A';
+                // productTagsElem is removed from HTML, so no need to set textContent here
+                productStoryElem.textContent = loadedProduct.story || 'No specific story available.'; // CHANGED: Assign story to its element
+
+                if (loadedProduct.details && productDetailsListElem) {
+                    productDetailsListElem.innerHTML = loadedProduct.details.map(detail => `<li>${detail}</li>`).join('');
+                } else if (productDetailsListElem) {
+                    productDetailsListElem.innerHTML = '<li>No specific additional details.</li>';
+                }
+
+                // Set the single main product image
+                const mainImageUrl = loadedProduct.image && loadedProduct.image.length > 0 ? loadedProduct.image[0] : 'assets/placeholder.webp';
+                mainProductImage.src = mainImageUrl.startsWith('/') ? mainImageUrl.substring(1) : mainImageUrl;
+                mainProductImage.alt = loadedProduct.name;
+
+
+                // Setup Add to Enquiry Button
+                if (addToEnquiryButton) {
+                    if (loadedProduct.stock <= 0) {
+                        addToEnquiryButton.textContent = 'Not Available for Enquiry';
+                        addToEnquiryButton.disabled = true;
+                        addToEnquiryButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        addToEnquiryButton.textContent = 'Add to Enquiry List';
+                        addToEnquiryButton.disabled = false;
+                        addToEnquiryButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                        addToEnquiryButton.addEventListener('click', () => addToEnquiryList(loadedProduct.id, 1));
+                    }
+                }
+
+            } else {
+                document.getElementById('product-detail-section').innerHTML = '<p class="text-center text-red-500 text-xl font-bold">Product with ID ' + productId + ' not found. <a href="shop.html" class="text-blue-400 hover:underline">Go back to shop</a></p>';
+                document.title = "Product Not Found";
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
-            // This is where all the main initialization code runs
-            renderProducts(); // This must be able to call createProductCard
-            renderCart();
-
-            // All your other event listeners
-            if (cartButton && closeCartButton && cartPanelContainer && enquireNow) {
+            if (cartButton && closeCartButton && cartPanelContainer && enquireNowButtonCart) {
                 cartButton.addEventListener('click', toggleCart);
                 closeCartButton.addEventListener('click', toggleCart);
                 cartPanelContainer.addEventListener('click', (e) => {
@@ -606,17 +575,9 @@
                         toggleCart();
                     }
                 });
-                enquireNow.addEventListener('click', handleEnquireNow);
+                enquireNowButtonCart.addEventListener('click', handleEnquireNow);
             }
 
-            if (productGrid) {
-                productGrid.addEventListener('click', (e) => {
-                    const targetLink = e.target.closest('.view-details-btn');
-                    if (targetLink) {
-                        // Navigation is handled by the href on the button
-                    }
-                });
-            }
             if (cartItemsContainer) {
                 cartItemsContainer.addEventListener('click', e => {
                     const target = e.target;
@@ -634,16 +595,21 @@
                 });
             }
 
-            if (mobileMenuButtonShop && mobileMenuShop) {
-                mobileMenuButtonShop.addEventListener('click', () => {
-                    mobileMenuShop.classList.toggle('hidden');
+            if (mobileMenuButtonDetail && mobileMenuDetail) {
+                mobileMenuButtonDetail.addEventListener('click', () => {
+                    mobileMenuDetail.classList.toggle('hidden');
                 });
-                mobileMenuShop.querySelectorAll('a').forEach(link => {
+                mobileMenuDetail.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
-                        mobileMenuShop.classList.add('hidden');
+                        mobileMenuDetail.classList.add('hidden');
                     });
                 });
             }
+
+            if (window.location.pathname.includes('product-detail.html')) {
+                loadProductDetails();
+            }
+            renderCart();
         });
     </script>
 </body>
