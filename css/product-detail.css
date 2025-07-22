@@ -1,0 +1,85 @@
+/* web/css/product-detail.css */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+.font-calligraphy {
+    font-family: 'Great Vibes', cursive;
+}
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+.btn-primary {
+    background-color: #A0522D;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #8B4513;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+#cart-panel {
+    transition: transform 0.4s ease-in-out;
+}
+.cart-item-quantity input {
+    background-color: #333;
+    color: #fff;
+}
+
+.product-image-container {
+    width: 100%;
+    padding-bottom: 100%; /* 1:1 Aspect Ratio (Square) */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    background-color: #222;
+}
+.product-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Fills the container, showing full image */
+    background-color: #333; /* Dark background for images */
+}
+
+.product-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.product-details-grid div strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+.product-details-grid div span {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+.product-long-details ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    color: #b0b0b0;
+}
+.product-long-details li {
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+.product-info-area p {
+    color: #e0e0e0;
+}
+.product-info-area h1, .product-info-area h3 {
+    color: #fff;
+}
