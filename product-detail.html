@@ -9,6 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/product-detail.css">
+    <style>
+        /* Custom styles for the carousel, can be moved to product-detail.css */
+        .thumbnail-image.active {
+            border: 2px solid theme('colors.indigo.500'); /* Example active border */
+            box-shadow: 0 0 0 2px theme('colors.indigo.500');
+        }
+        /* Hide scrollbar for thumbnail area but keep scroll functionality */
+        .thumbnail-scroll-container::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, Opera */
+        }
+        .thumbnail-scroll-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
 </head>
 <body class="antialiased">
 
@@ -49,8 +64,20 @@
         <div class="container mx-auto px-4 md:px-6">
             <div id="product-detail-section" class="bg-gray-900 p-6 md:p-10 rounded-lg shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                 <div class="product-image-area">
-                    <div class="product-image-container">
-                        <img id="main-product-image" src="assets/placeholder.webp" alt="Product image">
+                    <div class="product-image-container relative">
+                        <img id="main-product-image" src="assets/placeholder.webp" alt="Product image" class="w-full h-auto rounded-lg">
+                        
+                        <button id="prev-image-button" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hidden lg:block">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button id="next-image-button" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hidden lg:block">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div id="thumbnail-carousel" class="mt-4 overflow-x-auto thumbnail-scroll-container">
+                        <div class="flex space-x-3 p-1">
+                            </div>
                     </div>
                 </div>
 
