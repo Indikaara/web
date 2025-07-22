@@ -28,7 +28,8 @@ export const rawProductData = {
                     weavingTechnique: "Handwoven",
                     material: "Wool & Bamboo Silk ",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'Modern']
+                    tags: ['abstract', 'Modern'],
+                    SKU: '2024071100'
                 },
                 {
                     id: 10002,
@@ -50,7 +51,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "New Zealand Wool",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract']
+                    tags: ['abstract'],
+                    SKU: '2023071116'
                 },
                 {
                     id: 10003,
@@ -71,7 +73,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Wool & Bamboo Silk ",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract']
+                    tags: ['abstract'],
+                    SKU: '2023071130'
                 },
                 {
                     id: 10004,
@@ -93,7 +96,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Wool & Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'modern']
+                    tags: ['abstract', 'modern'],
+                    SKU: '2023071133'
                 },
                 {
                     id: 10005,
@@ -114,7 +118,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Handspun Wool & Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Shape Rugs']
+                    tags: ['Shape Rugs'],
+                    SKU: 'MR-155'
                 },
                 {
                     id: 10006,
@@ -137,7 +142,8 @@ export const rawProductData = {
                     weavingTechnique: "Tibetan Knotted",
                     material: "100% Wool",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Uncategorized']
+                    tags: ['Uncategorized'],
+                    SKU: '2024081213'
                 },
                 {
                     id: 10007,
@@ -160,7 +166,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Wool & Bamboo Silk",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Uncategorized']
+                    tags: ['Uncategorized'],
+                    SKU: '2024081218'
                 },
                 {
                     id: 10008,
@@ -183,7 +190,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "100% Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Uncategorized']
+                    tags: ['Uncategorized'],
+                    SKU: '2024081181'
                 },
                 {
                     id: 10009,
@@ -206,7 +214,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "NZ Wool & Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Uncategorized']
+                    tags: ['Uncategorized'],
+                    SKU: '2024081168'
                 },
                 {
                     id: 10010,
@@ -229,7 +238,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "Wool",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['Uncategorized']
+                    tags: ['Uncategorized'],
+                    SKU: '2024071017'
                 },
                 {
                     id: 10011,
@@ -252,7 +262,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Wool & Bamboo Silk",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'Uncategorized']
+                    tags: ['abstract', 'Uncategorized'],
+                    SKU: '2024081150'
                 },
                 {
                     id: 10012,
@@ -275,30 +286,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "Wool & Viscose",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'Modern']
-                },
-                {
-                    id: 10012,
-                    name: "DIAMOND",
-                    price: null,
-                    priceRange: '₹22,680.00 – ₹51,030.00',
-                    image: [
-                        "assets/products/rugs/mirzapur_rugs/diamond/1.webp",
-                        "assets/products/rugs/mirzapur_rugs/diamond/2.webp",
-                        "assets/products/rugs/mirzapur_rugs/diamond/3.webp",
-                        "assets/products/rugs/mirzapur_rugs/diamond/4.webp",
-                    ],
-                    story:
-                        "Introducing our hand-tufted carpet, meticulously crafted with precision and care to bring elegance and comfort to your space. Made from luxurious materials, each rug is expertly placed to create a plush and durable surface that enhances your room. Whether you’re looking to add warmth to your living room or sophistication to your office, our hand-tufted carpet is the perfect choice. Experience the perfect blend of style and quality with our exquisite hand-tufted carpet collection.",
-                    description:
-                        "Introducing our hand-tufted carpet, crafted for elegance and comfort. Made from luxurious materials for a plush, durable surface. Perfect for adding warmth or sophistication to any room. Experience style and quality with our exquisite collection.",
-                    details: ['Use : Indoor use only', 'Pile Height : 12 - 14 MM 100% Cut', 'Shedding is Inherent to Wool Rugs', 'Suitable for Medium Traffic Areas', 'Good Weave Certified', 'Made in India'],
-                    dimensionsAvailable: ["4 x 6 ft", "5 x 7 ft", "6 x 9 ft"],
-                    color: ["Ivory"],
-                    weavingTechnique: "Hand Tufted",
-                    material: "Wool & Viscose",
-                    manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'Modern']
+                    tags: ['abstract', 'Modern'],
+                    SKU: '2024071043'
                 },
                 {
                     id: 10013,
@@ -319,7 +308,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Knotted",
                     material: "Wool & Bamboo Silk",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract']
+                    tags: ['abstract'],
+                    SKU: '2023071167'
                 },
                 {
                     id: 10014,
@@ -342,7 +332,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "100% TENCEL",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'modern']
+                    tags: ['abstract', 'modern'],
+                    SKU: '2023081301'
                 },
                 {
                     id: 10015,
@@ -365,7 +356,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "New Zeland Wool & Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'modern']
+                    tags: ['abstract', 'modern'],
+                    SKU: 'MR-065'
                 },
                 {
                     id: 10016,
@@ -388,7 +380,8 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "100% Tencel",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'modern']
+                    tags: ['abstract', 'modern'],
+                    SKU: '2023081298'
                 },
                 {
                     id: 10017,
@@ -411,7 +404,80 @@ export const rawProductData = {
                     weavingTechnique: "Hand Tufted",
                     material: "Wool",
                     manufacturer: "Mirzapur Rugs",
-                    tags: ['abstract', 'modern']
+                    tags: ['abstract', 'modern'],
+                    SKU: '2024081177'
+                },
+                {
+                    id: 10018,
+                    name: "DISCOID",
+                    price: 181440,
+                    priceRange: null,
+                    image: [
+                        "assets/products/rugs/mirzapur_rugs/discoid/1.webp",
+                        "assets/products/rugs/mirzapur_rugs/discoid/2.webp",
+                        "assets/products/rugs/mirzapur_rugs/discoid/3.webp",
+                        "assets/products/rugs/mirzapur_rugs/discoid/4.webp",
+                    ],
+                    story:
+                        "It is a subtle representation of the earth from a bird's view. Swirling around itself discoid denotes the circular nature of life. what goes around comes around. spreading the goodness and richness of Tencel all around the wide circular shape and the ground of wool that stays steady and changes linearly. Discoid brings the beauty of the earth with its calm and harmonious textures to any type of interior.",
+                    description:
+                        "It is a subtle representation of the earth from a bird’s view. Swirling around itself discoid denotes the circular nature of life.",
+                    details: ['Use : Indoor use only', 'Pile Height : ', 'Shedding is Inherent to Wool Rugs', 'Suitable for Medium Traffic Areas', 'Good Weave Certified', 'Made in India'],
+                    dimensionsAvailable: ["8 x 8 ft"],
+                    color: ["Blue", "Pink"],
+                    weavingTechnique: "Hand Knotted",
+                    material: "Wool & Tencel",
+                    manufacturer: "Mirzapur Rugs",
+                    tags: ['abstract', 'down havoc', 'modern', 'shape rugs'],
+                    SKU: '2023071166 '
+                },
+                {
+                    id: 10019,
+                    name: "COASTAL",
+                    price: null,
+                    priceRange: '₹105,000.00 – ₹141,750.00',
+                    image: [
+                        "assets/products/rugs/mirzapur_rugs/coastal/1.webp",
+                        "assets/products/rugs/mirzapur_rugs/coastal/2.webp",
+                        "assets/products/rugs/mirzapur_rugs/coastal/3.webp",
+                        "assets/products/rugs/mirzapur_rugs/coastal/4.webp",
+                    ],
+                    story:
+                        "Introducing our hand-tufted carpet, meticulously crafted with precision and care to bring elegance and comfort to your space. Made from luxurious materials, each rug is expertly placed to create a plush and durable surface that enhances your room. Whether you’re looking to add warmth to your living room or sophistication to your office, our hand-tufted carpet is the perfect choice. Experience the perfect blend of style and quality with our exquisite hand-tufted carpet collection.",
+                    description:
+                        "Introducing our hand-tufted carpet. Crafted with precision from luxurious materials, it offers a plush, durable surface. Perfect for adding elegance to any room. Experience quality and style.",
+                    details: ['Use : Indoor use only', 'Pile Height :  12 - 14 MM 100% Cut ', 'Shedding is Inherent to Wool Rugs', 'Suitable for Medium Traffic Areas', 'Good Weave Certified', 'Made in India'],
+                    dimensionsAvailable: ["8 x 10 ft", "9 x 12 ft"],
+                    color: ["multi"],
+                    weavingTechnique: "Hand Tufted",
+                    material: "100% TENCAL",
+                    manufacturer: "Mirzapur Rugs",
+                    tags: ['abstract','modern'],
+                    SKU: '2024081189 '
+                },
+                {
+                    id: 10020,
+                    name: "IMPRESSION",
+                    price: null,
+                    priceRange: '₹64,313.00 – ₹147,000.00',
+                    image: [
+                        "assets/products/rugs/mirzapur_rugs/impression/1.webp",
+                        "assets/products/rugs/mirzapur_rugs/impression/2.webp",
+                        "assets/products/rugs/mirzapur_rugs/impression/3.webp",
+                        "assets/products/rugs/mirzapur_rugs/impression/4.webp",
+                    ],
+                    story:
+                        "Introducing our hand-tufted carpet, meticulously crafted with precision and care to bring elegance and comfort to your space. Made from luxurious materials, each rug is expertly placed to create a plush and durable surface that enhances your room. Whether you’re looking to add warmth to your living room or sophistication to your office, our hand-tufted carpet is the perfect choice. Experience the perfect blend of style and quality with our exquisite hand-tufted carpet collection.",
+                    description:
+                        "Introducing our hand-tufted carpet. Crafted with precision from luxurious materials, it offers a plush, durable surface. Perfect for adding elegance to any room. Experience quality and style.",
+                    details: ['Use : Indoor use only', 'Pile Height :  12 - 14 MM 100% Cut ', 'Shedding is Inherent to Wool Rugs', 'Suitable for Medium Traffic Areas', 'Good Weave Certified', 'Made in India'],
+                    dimensionsAvailable: ["5 x 7 ft", "6 x 9 ft", "8 x 10 ft"],
+                    color: ["brown", "grey"],
+                    weavingTechnique: "Hand Tufted",
+                    material: "100% TENCEL",
+                    manufacturer: "Mirzapur Rugs",
+                    tags: ['abstract','modern'],
+                    SKU: '2023071187 '
                 },
             ],
         },
