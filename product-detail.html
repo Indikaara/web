@@ -9,21 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/product-detail.css">
-    <style>
-        /* Custom styles for the carousel, can be moved to product-detail.css */
-        .thumbnail-image.active {
-            border: 2px solid theme('colors.indigo.500'); /* Example active border */
-            box-shadow: 0 0 0 2px theme('colors.indigo.500');
-        }
-        /* Hide scrollbar for thumbnail area but keep scroll functionality */
-        .thumbnail-scroll-container::-webkit-scrollbar {
-            display: none; /* For Chrome, Safari, Opera */
-        }
-        .thumbnail-scroll-container {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-    </style>
 </head>
 <body class="antialiased">
 
@@ -87,7 +72,6 @@
                     
                     <div class="product-details-grid">
                         <div><strong>Category</strong><span id="product-category"></span></div>
-                        <div><strong>Manufacturer</strong><span id="product-manufacturer"></span></div>
                         <div><strong>Material</strong><span id="product-material"></span></div>
                         <div><strong>Technique</strong><span id="product-weaving-technique"></span></div>
                         <div><strong>Available Sizes</strong><span id="product-dimensions-available"></span></div>
