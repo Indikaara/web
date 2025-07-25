@@ -1,16 +1,21 @@
 // web/js/product-detail.js - Specific logic for the product detail page
 
-import { allProducts, cart, saveCart, updateCartInfo, addToEnquiryList, changeQuantity, removeFromCart, handleEnquireNow } from '../data/data.js';
+import * as data from '../data/data.js'; // Import all exports from data.js as a namespace 'data'
 
 // DOM element references specific to product-detail.html
 const cartButton = document.getElementById('cart-button');
+console.log('cartButton element:', cartButton); // Debug: Check if cartButton is found
 const cartPanelContainer = document.getElementById('cart-panel-container');
+console.log('cartPanelContainer element:', cartPanelContainer); // Debug: Check if cartPanelContainer is found
 const cartPanel = document.getElementById('cart-panel');
+console.log('cartPanel element:', cartPanel); // Debug: Check if cartPanel is found
 const closeCartButton = document.getElementById('close-cart-button');
+console.log('closeCartButton element:', closeCartButton); // Debug: Check if closeCartButton is found
 const cartItemsContainer = document.getElementById('cart-items');
 const cartCount = document.getElementById('cart-count'); // This is the span for count
 const cartSubtotal = document.getElementById('cart-subtotal'); // This is the span for total items in cart panel
-const enquireNowButtonCart = document.getElementById('enquire-now-button-cart'); // For the cart panel
+const enquireNowButtonCart = document.getElementById('enquire-now-button-cart'); // CORRECTED ID HERE: Changed from 'enquire-now-button' to 'enquire-now-button-cart'
+console.log('enquireNowButtonCart element:', enquireNowButtonCart); // Debug: Check if enquireNowButtonCart is found
 const mobileMenuButtonDetail = document.getElementById('mobile-menu-button-detail');
 const mobileMenuDetail = document.getElementById('mobile-menu-detail');
 
@@ -21,21 +26,34 @@ const productDetailsListElem = document.getElementById('product-details-list');
 const productStoryElem = document.querySelector('#product-story p');
 const addToEnquiryButton = document.getElementById('add-to-enquiry-button');
 
-// --- Modal Elements ---
-let modalContainer;
-let modalMessage;
-let modalCloseButton;
-let modalOkButton; // New reference for the OK button
+// --- General Modal Elements (for confirmations/errors) ---
+let generalModalContainer;
+let generalModalMessage;
+let generalModalCloseButton;
+let generalModalOkButton;
+
+// --- Enquiry Form Modal Elements ---
+let enquiryFormModalContainer;
+let enquiryFormModalCloseButton;
+let enquiryFormModalItemsList;
+let enquiryFormModalNameInput;
+let enquiryFormModalEmailInput;
+let enquiryFormModalPhoneInput; // New: Phone Input
+let enquiryFormModalCompanyInput; // New: Company Input
+let enquiryFormModalSubmitButton;
+let enquiryFormModalForm;
 
 // Helper function to manage body scroll state based on modal and cart panel visibility
 function updateBodyScrollState() {
-    // Ensure modalContainer and cartPanelContainer are initialized before checking
-    if (!modalContainer || !cartPanelContainer) {
-        console.warn('Modal or Cart Panel container not yet initialized for scroll state management.');
+    // Ensure all modal/cart panel containers are initialized before checking
+    if (!generalModalContainer || !cartPanelContainer || !enquiryFormModalContainer) {
+        console.warn('One or more modal/cart panel containers not yet initialized for scroll state management.');
         return;
     }
-    // If either the modal or the cart panel is NOT hidden, add overflow-hidden
-    if (!modalContainer.classList.contains('hidden') || !cartPanelContainer.classList.contains('hidden')) {
+    // If any of the modals or the cart panel is NOT hidden, add overflow-hidden
+    if (!generalModalContainer.classList.contains('hidden') || 
+        !cartPanelContainer.classList.contains('hidden') ||
+        !enquiryFormModalContainer.classList.contains('hidden')) {
         document.body.classList.add('overflow-hidden');
     } else {
         // Otherwise, remove overflow-hidden
@@ -43,65 +61,201 @@ function updateBodyScrollState() {
     }
 }
 
-// Function to initialize modal elements
-function initializeModal() {
-    // Create modal container if it doesn't exist
-    if (!document.getElementById('enquiry-modal-container')) {
+// Function to initialize general modal elements (for confirmations/errors)
+function initializeGeneralModal() {
+    if (!document.getElementById('general-modal-container')) {
         const modalHTML = `
-            <div id="enquiry-modal-container" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden p-4">
+            <div id="general-modal-container" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden p-4">
                 <div class="bg-gray-800 p-8 rounded-lg shadow-xl text-center max-w-sm w-full relative">
-                    <button id="enquiry-modal-close-button" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+                    <button id="general-modal-close-button" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
                     <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <p id="enquiry-modal-message" class="text-white text-lg font-semibold mb-4"></p>
-                    <button class="btn-primary py-2 px-6 rounded-full text-sm font-semibold" id="enquiry-modal-ok-button">OK</button>
+                    <p id="general-modal-message" class="text-white text-lg font-semibold mb-4"></p>
+                    <button class="btn-primary py-2 px-6 rounded-full text-sm font-semibold" id="general-modal-ok-button">OK</button>
                 </div>
             </div>
         `;
         document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
-    modalContainer = document.getElementById('enquiry-modal-container');
-    modalMessage = document.getElementById('enquiry-modal-message');
-    modalCloseButton = document.getElementById('enquiry-modal-close-button');
-    modalOkButton = document.getElementById('enquiry-modal-ok-button'); // Get reference to the OK button
+    generalModalContainer = document.getElementById('general-modal-container');
+    generalModalMessage = document.getElementById('general-modal-message');
+    generalModalCloseButton = document.getElementById('general-modal-close-button');
+    generalModalOkButton = document.getElementById('general-modal-ok-button');
 
-    if (modalCloseButton) {
-        modalCloseButton.addEventListener('click', hideModal);
+    if (generalModalCloseButton) {
+        generalModalCloseButton.addEventListener('click', hideGeneralModal);
     }
-    if (modalOkButton) { // Add event listener for the new OK button
-        modalOkButton.addEventListener('click', hideModal);
+    if (generalModalOkButton) {
+        generalModalOkButton.addEventListener('click', hideGeneralModal);
     }
-    if (modalContainer) {
-        modalContainer.addEventListener('click', (e) => {
-            if (e.target === modalContainer) {
-                hideModal();
+    if (generalModalContainer) {
+        generalModalContainer.addEventListener('click', (e) => {
+            if (e.target === generalModalContainer) {
+                hideGeneralModal();
             }
         });
     }
 }
 
-function showModal(message) {
-    if (modalContainer && modalMessage) {
-        modalMessage.textContent = message;
-        modalContainer.classList.remove('hidden');
+function showGeneralModal(message) {
+    if (generalModalContainer && generalModalMessage) {
+        generalModalMessage.textContent = message;
+        generalModalContainer.classList.remove('hidden');
         updateBodyScrollState(); // Update scroll state when modal is shown
     }
 }
 
-function hideModal() {
-    if (modalContainer) {
-        modalContainer.classList.add('hidden');
+function hideGeneralModal() {
+    if (generalModalContainer) {
+        generalModalContainer.classList.add('hidden');
         updateBodyScrollState(); // Update scroll state when modal is hidden
     }
 }
+
+// Function to initialize enquiry form modal elements
+function initializeEnquiryFormModal() {
+    if (!document.getElementById('enquiry-form-modal-container')) {
+        const formModalHTML = `
+            <div id="enquiry-form-modal-container" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden p-4">
+                <div class="bg-gray-900 p-8 rounded-lg shadow-xl text-white max-w-lg w-full relative">
+                    <button id="enquiry-form-modal-close-button" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+                    <h2 class="text-3xl font-display font-bold mb-6 text-center">Submit Your Enquiry</h2>
+                    <form id="enquiry-form">
+                        <div class="mb-4">
+                            <label for="enquiry-name" class="block text-gray-300 text-sm font-semibold mb-2">Your Name:</label>
+                            <input type="text" id="enquiry-name" name="name" class="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="enquiry-email" class="block text-gray-300 text-sm font-semibold mb-2">Your Email:</label>
+                            <input type="email" id="enquiry-email" name="email" class="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="enquiry-phone" class="block text-gray-300 text-sm font-semibold mb-2">Your Phone Number:</label>
+                            <input type="tel" id="enquiry-phone" name="phone" class="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="enquiry-company" class="block text-gray-300 text-sm font-semibold mb-2">Company Name:</label>
+                            <input type="text" id="enquiry-company" name="company" class="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3">Items in Your Enquiry List:</h3>
+                            <ul id="enquiry-form-items-list" class="list-disc list-inside text-gray-300 max-h-48 overflow-y-auto p-2 rounded-md bg-gray-800 border border-gray-700">
+                                <!-- Cart items will be dynamically inserted here -->
+                            </ul>
+                        </div>
+                        <button type="submit" id="enquiry-form-submit-button" class="w-full btn-primary py-3 rounded-lg text-lg font-semibold">Submit Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', formModalHTML);
+    }
+
+    enquiryFormModalContainer = document.getElementById('enquiry-form-modal-container');
+    enquiryFormModalCloseButton = document.getElementById('enquiry-form-modal-close-button');
+    enquiryFormModalItemsList = document.getElementById('enquiry-form-items-list');
+    enquiryFormModalNameInput = document.getElementById('enquiry-name');
+    enquiryFormModalEmailInput = document.getElementById('enquiry-email');
+    enquiryFormModalPhoneInput = document.getElementById('enquiry-phone'); // Get reference
+    enquiryFormModalCompanyInput = document.getElementById('enquiry-company'); // Get reference
+    enquiryFormModalSubmitButton = document.getElementById('enquiry-form-submit-button');
+    enquiryFormModalForm = document.getElementById('enquiry-form');
+
+    if (enquiryFormModalCloseButton) {
+        enquiryFormModalCloseButton.addEventListener('click', hideEnquiryFormModal);
+    }
+    if (enquiryFormModalContainer) {
+        enquiryFormModalContainer.addEventListener('click', (e) => {
+            if (e.target === enquiryFormModalContainer) {
+                hideEnquiryFormModal();
+            }
+        });
+    }
+
+    if (enquiryFormModalForm) {
+        enquiryFormModalForm.addEventListener('submit', handleFormSubmission);
+    }
+}
+
+function showEnquiryFormModal() {
+    if (enquiryFormModalContainer && enquiryFormModalItemsList) {
+        enquiryFormModalItemsList.innerHTML = ''; // Clear previous items
+        if (data.cart.length === 0) {
+            enquiryFormModalItemsList.innerHTML = '<li class="text-center">Your enquiry list is empty. Please add items first.</li>';
+            enquiryFormModalSubmitButton.disabled = true;
+            enquiryFormModalSubmitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            data.cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} (ID: ${item.id}), Quantity: ${item.quantity}`;
+                enquiryFormModalItemsList.appendChild(listItem);
+            });
+            enquiryFormModalSubmitButton.disabled = false;
+            enquiryFormModalSubmitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        enquiryFormModalContainer.classList.remove('hidden');
+        updateBodyScrollState();
+    }
+}
+
+function hideEnquiryFormModal() {
+    if (enquiryFormModalContainer) {
+        enquiryFormModalContainer.classList.add('hidden');
+        updateBodyScrollState();
+    }
+}
+
+function handleFormSubmission(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const name = enquiryFormModalNameInput.value;
+    const email = enquiryFormModalEmailInput.value;
+    const phone = enquiryFormModalPhoneInput.value; // Get phone number
+    const company = enquiryFormModalCompanyInput.value; // Get company name
+
+    if (!name || !email) {
+        showGeneralModal('Please fill in both your name and email address.');
+        return;
+    }
+
+    if (data.cart.length === 0) {
+        showGeneralModal('Your enquiry list is empty. Please add items to enquire.');
+        return;
+    }
+
+    let enquiryDetails = `Hello Indikaara Team,\n\nI would like to enquire about the following products:\n\n`;
+    data.cart.forEach(item => {
+        enquiryDetails += `- ${item.name} (ID: ${item.id}), Quantity: ${item.quantity}\n`;
+    });
+    enquiryDetails += `\nMy Name: ${name}\n`;
+    enquiryDetails += `My Email: ${email}\n`;
+    if (phone) enquiryDetails += `My Phone Number: ${phone}\n`; // Include if provided
+    if (company) enquiryDetails += `My Company: ${company}\n`; // Include if provided
+    enquiryDetails += `\nPlease contact me to discuss details regarding these items, including pricing, availability, and export procedures.`;
+
+    // Construct the mailto link
+    const mailtoLink = `mailto:info@indikaara.com?subject=${encodeURIComponent('Enquiry from Indikaara Website')}&body=${encodeURIComponent(enquiryDetails)}`;
+
+    // Open the email client
+    window.location.href = mailtoLink;
+
+    // Clear the cart after generating the email
+    data.cart.length = 0; // Clear array by setting length to 0
+    data.saveCart();
+    renderCart(); // Update cart display
+
+    hideEnquiryFormModal(); // Hide the form modal
+    showGeneralModal("Your enquiry email has been prepared. Please send it from your email client."); // Show success modal
+}
+
 
 // --- Render Cart (specific to product-detail.html's elements) ---
 function renderCart() {
     if (cartItemsContainer) { // Ensure cartItemsContainer exists before trying to update it
         cartItemsContainer.innerHTML = '';
-        if (cart.length === 0) {
+        if (data.cart.length === 0) { // Use data.cart
             cartItemsContainer.innerHTML = '<p class="text-gray-300 text-center py-4">Your enquiry list is empty.</p>';
             // Disable enquire now button if cart is empty
             if (enquireNowButtonCart) {
@@ -109,7 +263,7 @@ function renderCart() {
                 enquireNowButtonCart.classList.add('opacity-50', 'cursor-not-allowed');
             }
         } else {
-            cart.forEach(item => {
+            data.cart.forEach(item => { // Use data.cart
                 const cartItemImageUrl = item.image && item.image.length > 0 ? item.image[0] : 'assets/placeholder.webp';
                 const finalCartItemImageUrl = cartItemImageUrl; 
 
@@ -142,7 +296,7 @@ function renderCart() {
                 button.addEventListener('click', (event) => {
                     const productId = parseInt(event.target.closest('[data-id]').dataset.id);
                     const change = parseInt(event.target.dataset.change);
-                    changeQuantity(productId, change);
+                    data.changeQuantity(productId, change); // Use data.changeQuantity
                     renderCart(); // Re-render cart after quantity change
                 });
             });
@@ -150,25 +304,31 @@ function renderCart() {
             cartItemsContainer.querySelectorAll('.remove-item').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const productId = parseInt(event.target.closest('[data-id]').dataset.id);
-                    removeFromCart(productId);
+                    data.removeFromCart(productId); // Use data.removeFromCart
                     renderCart(); // Re-render cart after item removal
                 });
             });
         }
-        updateCartInfo(cartCount, cartSubtotal); // Call shared update function, pass detail page's elements
+        data.updateCartInfo(cartCount, cartSubtotal); // Use data.updateCartInfo
     }
 }
 
-// Re-declaring toggleCart to use local DOM elements and call local renderCart
+// Toggle Cart function for product-detail.html
 function toggleCart() {
-    if (cartPanelContainer) { // Ensure element exists
+    console.log('toggleCart function called.'); // Debug: Confirm toggleCart is executed
+    if (cartPanelContainer) {
         cartPanelContainer.classList.toggle('hidden');
-        if (cartPanel) { // Ensure cartPanel exists for transition
+        console.log('cartPanelContainer hidden state:', cartPanelContainer.classList.contains('hidden')); // Debug: Check hidden class
+        if (cartPanel) {
             setTimeout(() => {
                 cartPanel.classList.toggle('translate-x-full');
+                console.log('cartPanel translate-x-full state:', cartPanel.classList.contains('translate-x-full')); // Debug: Check translate class
             }, 10);
         }
         updateBodyScrollState(); // Update scroll state when cart is toggled
+        renderCart(); // Render cart when panel is toggled
+    } else {
+        console.error('cartPanelContainer not found in toggleCart!');
     }
 }
 
@@ -186,7 +346,7 @@ function loadProductDetails() {
         return;
     }
 
-    const loadedProduct = allProducts.find(p => p.id === productId);
+    const loadedProduct = data.allProducts.find(p => p.id === productId); // Use data.allProducts
 
     if (loadedProduct) {
         console.log('Found product:', loadedProduct); // Debug 3
@@ -270,7 +430,7 @@ function loadProductDetails() {
                 addToEnquiryButton.classList.remove('opacity-50', 'cursor-not-allowed');
                 // Use shared addToEnquiryList function, pass loadedProduct.id
                 addToEnquiryButton.addEventListener('click', () => {
-                    addToEnquiryList(loadedProduct.id, 1);
+                    data.addToEnquiryList(loadedProduct.id, 1); // Use data.addToEnquiryList
                     renderCart(); // Update local cart display after adding
                 });
             }
@@ -285,11 +445,14 @@ function loadProductDetails() {
 
 // Event Listeners for Product Detail Page
 document.addEventListener('DOMContentLoaded', function () {
-    initializeModal(); // Initialize modal elements
+    console.log('DOMContentLoaded fired in product-detail.js'); // Debug: Confirm DOM ready
+    initializeGeneralModal(); // Initialize general modal elements
+    initializeEnquiryFormModal(); // Initialize enquiry form modal elements
 
     renderCart(); // Initial render of cart state for this page
 
     if (cartButton && closeCartButton && cartPanelContainer && enquireNowButtonCart) {
+        console.log('Attaching cart panel event listeners.'); // Debug: Confirm listeners are attached
         cartButton.addEventListener('click', toggleCart);
         closeCartButton.addEventListener('click', toggleCart);
         cartPanelContainer.addEventListener('click', (e) => {
@@ -297,7 +460,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 toggleCart();
             }
         });
-        enquireNowButtonCart.addEventListener('click', handleEnquireNow);
+        // Modified: "Enquire Now" button now opens the enquiry form modal
+        enquireNowButtonCart.addEventListener('click', showEnquiryFormModal);
+    } else {
+        console.error('One or more essential cart elements not found for event listeners:', { cartButton, closeCartButton, cartPanelContainer, enquireNowButtonCart });
     }
 
     if (mobileMenuButtonDetail && mobileMenuDetail) {
@@ -316,20 +482,28 @@ document.addEventListener('DOMContentLoaded', function () {
         loadProductDetails();
     }
 
-    // Listen for custom events from data.js and show modal
+    // Listen for custom events from data.js and show general modal
     document.addEventListener('productAddedToEnquiry', (event) => {
-        showModal(`${event.detail.productName} has been added to your enquiry list!`);
+        showGeneralModal(`${event.detail.productName} has been added to your enquiry list!`);
     });
 
     document.addEventListener('productEnquiryError', (event) => {
-        showModal(`Error: ${event.detail.message}`);
+        showGeneralModal(`Error: ${event.detail.message}`);
     });
 
     document.addEventListener('enquiryListEmpty', (event) => {
-        showModal(event.detail.message);
+        showGeneralModal(event.detail.message);
     });
 
     document.addEventListener('enquiryEmailPrepared', (event) => {
-        showModal(event.detail.message);
+        showGeneralModal(event.detail.message);
+    });
+
+    document.addEventListener('productQuantityChanged', () => {
+        renderCart(); // Re-render cart when quantity changes
+    });
+
+    document.addEventListener('productRemovedFromEnquiry', () => {
+        renderCart(); // Re-render cart when item is removed
     });
 });
