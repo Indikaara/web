@@ -1,7 +1,7 @@
 /* web/css/index.css */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #000;
+    background-color: #331211; /* Set to the dark brown from the image */
     color: #fff;
 }
 
@@ -24,19 +24,19 @@ body {
 }
 
 .header-scrolled {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(51, 18, 17, 0.7); /* Adjusted alpha for #331211 */
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary {
-    background-color: #A0522D;
+    background-color: #AC1F23; /* Set to the red from the image */
     color: white;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #8B4513;
+    background-color: #DDB386; /* Set to the light brown/beige from the image */
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
@@ -86,5 +86,5 @@ body {
 }
 
 .collections-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(51, 18, 17, 0.5); /* Adjusted alpha for #331211 */
 }

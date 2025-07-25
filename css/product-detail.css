@@ -1,30 +1,36 @@
 /* web/css/product-detail.css */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #000;
+    background-color: #331211; /* Changed to dark brown from the theme */
     color: #fff;
 }
+
 .font-calligraphy {
     font-family: 'Great Vibes', cursive;
 }
+
 .font-display {
     font-family: 'Playfair Display', serif;
 }
+
 .btn-primary {
-    background-color: #A0522D;
+    background-color: #AC1F23; /* Changed to red from the theme */
     color: white;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .btn-primary:hover {
-    background-color: #8B4513;
+    background-color: #DDB386; /* Changed to light brown/beige from the theme */
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
+
 #cart-panel {
     transition: transform 0.4s ease-in-out;
 }
+
 .cart-item-quantity input {
-    background-color: #333;
+    background-color: #331211; /* Darker input background for cart, using theme dark brown */
     color: #fff;
 }
 
@@ -35,8 +41,9 @@ body {
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    background-color: #222;
+    background-color: #4A2220; /* Slightly lighter shade of the main dark brown for distinction */
 }
+
 .product-image-container img {
     position: absolute;
     top: 0;
@@ -44,7 +51,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain; /* Fills the container, showing full image */
-    background-color: #333; /* Dark background for images */
+    background-color: #2a0e0e; /* Darker background behind image */
 }
 
 .product-details-grid {
@@ -53,33 +60,55 @@ body {
     gap: 1rem;
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: #1a1a1a;
+    background-color: #4A2220; /* Consistent with product card background for similar elements */
     border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
+
 .product-details-grid div strong {
     display: block;
     margin-bottom: 0.25rem;
     color: #e0e0e0;
     font-size: 0.95rem;
 }
+
 .product-details-grid div span {
-    color: #b0b0b0;
+    color: #d0d0d0; /* Adjusted for better visibility against dark brown */
     font-size: 0.9rem;
 }
+
 .product-long-details ul {
     list-style: disc;
     padding-left: 1.5rem;
     margin-top: 0.5rem;
-    color: #b0b0b0;
+    color: #d0d0d0; /* Adjusted for better visibility against dark brown */
 }
+
 .product-long-details li {
     margin-bottom: 0.5rem;
     color: inherit;
 }
+
 .product-info-area p {
-    color: #e0e0e0;
+    color: #e0e0e0; /* Adjusted for better visibility against dark brown */
 }
+
 .product-info-area h1, .product-info-area h3 {
     color: #fff;
+}
+
+/* Custom styles for the carousel, moved from inline style */
+.thumbnail-image.active {
+    border: 2px solid #AC1F23; /* Active border using the theme's red */
+    box-shadow: 0 0 0 2px #AC1F23; /* Shadow using the theme's red */
+}
+
+/* Hide scrollbar for thumbnail area but keep scroll functionality */
+.thumbnail-scroll-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, Opera */
+}
+
+.thumbnail-scroll-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
