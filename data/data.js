@@ -3,7 +3,7 @@
 export const rawProductData = {
     products: [
         {
-            category: "rugs",
+            category: "Rugs",
             categoryId: 10000,
             items: [
                 {
@@ -366,7 +366,7 @@ export const rawProductData = {
                     priceRange: '₹27,563.00 – ₹198,450.00',
                     image: [
                         "assets/products/rugs/mirzapur_rugs/lush/1.webp",
-                        "assets/products/rugs/mirzapur_rugs/lush/2.webp",   
+                        "assets/products/rugs/mirzapur_rugs/lush/2.webp", 
                         "assets/products/rugs/mirzapur_rugs/lush/3.webp",
                         "assets/products/rugs/mirzapur_rugs/lush/4.webp",
                     ],
@@ -484,13 +484,13 @@ export const rawProductData = {
     ],
 };
 
-// Process rawProductData into a flat allProducts array for easier access
 export const allProducts = [];
 rawProductData.products.forEach(category => {
+    
+    let itemCategory = category.category
     category.items.forEach(item => {
         let itemPriceForCart = item.price !== null ? item.price : 0;
         let itemPriceDisplay = item.price !== null ? `₹${item.price.toLocaleString('en-IN')}` : (item.priceRange || 'Price on Request');
-
         allProducts.push({
             ...item,
             price: itemPriceForCart,
@@ -500,7 +500,7 @@ rawProductData.products.forEach(category => {
             image: Array.isArray(item.image) ? item.image.map(path => path.startsWith('/') ? path.substring(1) : path) : [item.image.startsWith('/') ? item.image.substring(1) : item.image],
             dimensions: item.dimensionsAvailable ? item.dimensionsAvailable.join(', ') : 'N/A',
             technology: item.weavingTechnique,
-            categoryName: item.category,
+            categoryName: itemCategory,
             stock: item.stock !== undefined ? item.stock : 10 // Default stock to 10 if not specified
         });
     });
@@ -535,7 +535,10 @@ export function updateCartInfo(cartCountElem, cartSubtotalElem) {
 export function addToEnquiryList(productId, quantity = 1) {
     const product = allProducts.find(p => p.id === productId);
     if (!product || product.stock <= 0) {
-        alert('This product is out of stock or does not exist!');
+        // Dispatch a custom event for "out of stock" or "not found"
+        document.dispatchEvent(new CustomEvent('productEnquiryError', {
+            detail: { message: 'This product is out of stock or does not exist!', productName: product ? product.name : 'Unknown Product' }
+        }));
         return;
     }
 
@@ -545,7 +548,10 @@ export function addToEnquiryList(productId, quantity = 1) {
         if (cartItem.quantity + quantity <= product.stock) {
             cartItem.quantity += quantity;
         } else {
-            alert('Adding this quantity would exceed available stock!');
+            // Dispatch a custom event for "exceeds stock"
+            document.dispatchEvent(new CustomEvent('productEnquiryError', {
+                detail: { message: 'Adding this quantity would exceed available stock!', productName: product.name }
+            }));
             return;
         }
     } else {
@@ -559,8 +565,10 @@ export function addToEnquiryList(productId, quantity = 1) {
         });
     }
     saveCart();
-    // This function doesn't directly call renderCart(); the calling page will update its UI
-    alert(`${product.name} added to your enquiry list.`);
+    // Dispatch a custom event for successful addition
+    document.dispatchEvent(new CustomEvent('productAddedToEnquiry', {
+        detail: { productName: product.name }
+    }));
 }
 
 export function changeQuantity(productId, change) {
@@ -573,25 +581,42 @@ export function changeQuantity(productId, change) {
             cartItem.quantity = newQuantity;
         } else if (newQuantity <= 0) {
             removeFromCart(productId);
+            // Optionally dispatch an event for item removal if needed for UI updates
+            document.dispatchEvent(new CustomEvent('productRemovedFromEnquiry', {
+                detail: { productName: product.name }
+            }));
             return;
         } else if (newQuantity > product.stock) {
-            alert('Cannot add more, maximum stock reached!');
+            // Dispatch a custom event for "cannot add more"
+            document.dispatchEvent(new CustomEvent('productEnquiryError', {
+                detail: { message: 'Cannot add more, maximum stock reached!', productName: product.name }
+            }));
             return;
         }
         saveCart();
-        // No direct renderCart() call here; the calling page will handle its own UI update
+        // Dispatch an event for quantity change if needed for specific UI updates
+        document.dispatchEvent(new CustomEvent('productQuantityChanged', {
+            detail: { productId: productId, newQuantity: newQuantity, productName: product.name }
+        }));
     }
 }
 
 export function removeFromCart(productId) {
+    const product = allProducts.find(p => p.id === productId); // Get product before filtering cart
     cart = cart.filter(item => item.id !== productId);
     saveCart();
-    // No direct renderCart() call here; the calling page will handle its own UI update
+    // Dispatch a custom event for successful removal
+    document.dispatchEvent(new CustomEvent('productRemovedFromEnquiry', {
+        detail: { productName: product ? product.name : 'Unknown Product' }
+    }));
 }
 
 export function handleEnquireNow() {
     if (cart.length === 0) {
-        alert("Your enquiry list is empty. Please add items to enquire.");
+        // Dispatch a custom event for empty enquiry list
+        document.dispatchEvent(new CustomEvent('enquiryListEmpty', {
+            detail: { message: "Your enquiry list is empty. Please add items to enquire." }
+        }));
         return;
     }
 
@@ -607,5 +632,8 @@ export function handleEnquireNow() {
 
     window.location.href = `mailto:your.email@example.com?subject=Enquiry from Indikaara Website&body=${encodeURIComponent(enquiryDetails)}`;
 
-    alert("Your enquiry request is being prepared. Please send the email that opens up.");
+    // Dispatch a custom event for email preparation
+    document.dispatchEvent(new CustomEvent('enquiryEmailPrepared', {
+        detail: { message: "Your enquiry request is being prepared. Please send the email that opens up." }
+    }));
 }
