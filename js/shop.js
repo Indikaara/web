@@ -370,6 +370,18 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeGeneralModal(); // Initialize general modal elements
     initializeEnquiryFormModal(); // Initialize enquiry form modal elements
 
+    // Handle navbar transparency on scroll
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('bg-[#331211]/85', 'backdrop-blur-sm', 'shadow-lg');
+            header.classList.remove('bg-transparent', 'backdrop-blur-0', 'shadow-none');
+        } else {
+            header.classList.remove('bg-[#331211]/85', 'backdrop-blur-sm', 'shadow-lg');
+            header.classList.add('bg-transparent', 'backdrop-blur-0', 'shadow-none');
+        }
+    });
+
     renderCart(); // Initial render of cart state for this page
     renderProducts(); // Render products on page load
 

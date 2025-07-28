@@ -25,6 +25,18 @@ const productDescriptionElem = document.getElementById('product-description');
 const productDetailsListElem = document.getElementById('product-details-list');
 const productStoryElem = document.querySelector('#product-story p');
 const addToEnquiryButton = document.getElementById('add-to-enquiry-button');
+const imageZoomWrapper = document.querySelector('.image-zoom-wrapper');
+
+// Initialize zoom functionality
+if (imageZoomWrapper && mainProductImage) {
+    imageZoomWrapper.addEventListener('mousemove', (e) => {
+        const rect = imageZoomWrapper.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        
+        mainProductImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+    });
+}
 
 // --- General Modal Elements (for confirmations/errors) ---
 let generalModalContainer;
@@ -225,29 +237,65 @@ function handleFormSubmission(event) {
         return;
     }
 
-    let enquiryDetails = `Hello Indikaara Team,\n\nI would like to enquire about the following products:\n\n`;
-    data.cart.forEach(item => {
-        enquiryDetails += `- ${item.name} (ID: ${item.id}), Quantity: ${item.quantity}\n`;
+    // Get current date
+    const currentDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
-    enquiryDetails += `\nMy Name: ${name}\n`;
-    enquiryDetails += `My Email: ${email}\n`;
-    if (phone) enquiryDetails += `My Phone Number: ${phone}\n`; // Include if provided
-    if (company) enquiryDetails += `My Company: ${company}\n`; // Include if provided
-    enquiryDetails += `\nPlease contact me to discuss details regarding these items, including pricing, availability, and export procedures.`;
 
-    // Construct the mailto link
-    const mailtoLink = `mailto:info@indikaara.com?subject=${encodeURIComponent('Enquiry from Indikaara Website')}&body=${encodeURIComponent(enquiryDetails)}`;
+    let enquiryDetails = `Dear Indikaara Team,\n\n`;
+    enquiryDetails += `I am writing to inquire about the following products from your collection:\n\n`;
+    enquiryDetails += `=== Product Details ===\n`;
+    
+    data.cart.forEach(item => {
+        enquiryDetails += `Product: ${item.name}\n`;
+        enquiryDetails += `Product ID: ${item.id}\n`;
+        enquiryDetails += `Quantity Required: ${item.quantity}\n\n`;
+    });
 
-    // Open the email client
-    window.location.href = mailtoLink;
+    enquiryDetails += `=== Contact Information ===\n`;
+    enquiryDetails += `Name: ${name}\n`;
+    enquiryDetails += `Email: ${email}\n`;
+    if (phone) enquiryDetails += `Phone: ${phone}\n`;
+    if (company) enquiryDetails += `Company: ${company}\n\n`;
 
-    // Clear the cart after generating the email
-    data.cart.length = 0; // Clear array by setting length to 0
-    data.saveCart();
-    renderCart(); // Update cart display
+    enquiryDetails += `I am interested in learning more about:\n`;
+    enquiryDetails += `- Pricing details for the selected items\n`;
+    enquiryDetails += `- Current availability and lead times\n`;
+    enquiryDetails += `- Export procedures and shipping options\n`;
+    enquiryDetails += `- Bulk order possibilities\n\n`;
 
-    hideEnquiryFormModal(); // Hide the form modal
-    showGeneralModal("Your enquiry email has been prepared. Please send it from your email client."); // Show success modal
+    enquiryDetails += `Looking forward to your response.\n\n`;
+    enquiryDetails += `Best regards,\n${name}\n\n`;
+    enquiryDetails += `Sent on: ${currentDate}\n`;
+    enquiryDetails += `Via: Indikaara Website Enquiry System`;
+
+    // Get total number of items for subject line
+    const totalItems = data.cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Construct a professional subject line
+    const subjectLine = `Product Enquiry - ${totalItems} item${totalItems > 1 ? 's' : ''} from ${name}${company ? ` (${company})` : ''}`;
+    
+    // Construct the mailto link with formatted subject and body
+    const mailtoLink = `mailto:info@indikaara.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(enquiryDetails)}`;
+
+    try {
+        // Open the email client
+        window.location.href = mailtoLink;
+
+        // Clear the cart only after email client opens
+        setTimeout(() => {
+            data.cart.length = 0; // Clear array by setting length to 0
+            data.saveCart();
+            renderCart(); // Update cart display
+
+            hideEnquiryFormModal(); // Hide the form modal
+            showGeneralModal("Your enquiry email has been prepared. Please complete and send it from your email client."); // Show success modal
+        }, 1000);
+    } catch (error) {
+        showGeneralModal("There was an error opening your email client. Please try again or contact us directly at info@indikaara.com");
+    }
 }
 
 
