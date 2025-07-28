@@ -51,7 +51,7 @@ function updateBodyScrollState() {
         return;
     }
     // If any of the modals or the cart panel is NOT hidden, add overflow-hidden
-    if (!generalModalContainer.classList.contains('hidden') || 
+    if (!generalModalContainer.classList.contains('hidden') ||
         !cartPanelContainer.classList.contains('hidden') ||
         !enquiryFormModalContainer.classList.contains('hidden')) {
         document.body.classList.add('overflow-hidden');
@@ -265,7 +265,7 @@ function renderCart() {
         } else {
             data.cart.forEach(item => { // Use data.cart
                 const cartItemImageUrl = item.image && item.image.length > 0 ? item.image[0] : 'assets/placeholder.webp';
-                const finalCartItemImageUrl = cartItemImageUrl; 
+                const finalCartItemImageUrl = cartItemImageUrl;
 
                 const cartItemHTML = `
                     <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-700 last:border-b-0" data-id="${item.id}">
@@ -277,7 +277,7 @@ function renderCart() {
                         </div>
                         <div class="flex items-center cart-item-quantity space-x-2">
                             <button class="quantity-change text-lg px-2 text-gray-300 hover:text-white" data-change="-1">-</button>
-                            <input type="text" value="${item.quantity}" class="w-10 text-center font-semibold rounded-md border border-gray-600 py-1" readonly style="background-color:#4A2220; color:white;">
+                           <input type="number" value="${item.quantity}" min="1" class="w-16 text-center font-semibold rounded-md border border-gray-600 py-1 bg-gray-800 text-white" style="background-color:#4A2220;">
                             <button class="quantity-change text-lg px-2 text-gray-300 hover:text-white" data-change="1">+</button>
                             <button class="remove-item text-red-400 ml-4 hover:text-red-300 text-2xl">&times;</button>
                         </div>
@@ -309,6 +309,29 @@ function renderCart() {
                 });
             });
         }
+                    // Add event listeners for quantity input fields
+            cartItemsContainer.querySelectorAll('input[type="number"]').forEach(input => {
+                input.addEventListener('change', (event) => {
+                    const productId = parseInt(event.target.closest('[data-id]').dataset.id);
+                    const newQuantity = parseInt(event.target.value);
+                    if (newQuantity > 0) {
+                        const currentQuantity = data.cart.find(item => item.id === productId)?.quantity || 0;
+                        const change = newQuantity - currentQuantity;
+                        data.changeQuantity(productId, change);
+                    } else {
+                        event.target.value = 1;
+                        data.changeQuantity(productId, 1 - data.cart.find(item => item.id === productId)?.quantity);
+                    }
+                    renderCart();
+                });
+
+                // Prevent negative values on input
+                input.addEventListener('keypress', (event) => {
+                    if (event.key === '-' || event.key === '+' || event.key === 'e') {
+                        event.preventDefault();
+                    }
+                });
+            });
         data.updateCartInfo(cartCount, cartSubtotal); // Use data.updateCartInfo
     }
 }
@@ -334,11 +357,9 @@ function toggleCart() {
 
 // --- Product Detail Page Specific Functions ---
 function loadProductDetails() {
-    console.log('loadProductDetails function called.'); // Debug 1
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get('id'));
 
-    console.log('Product ID from URL:', productId); // Debug 2
 
     if (isNaN(productId)) {
         document.getElementById('product-detail-section').innerHTML = '<p class="text-center text-red-500 text-xl font-bold">Product not found. <a href="shop.html" class="text-blue-400 hover:underline">Go back to shop</a></p>';
@@ -354,7 +375,7 @@ function loadProductDetails() {
 
         if (productNameElem) productNameElem.textContent = loadedProduct.name;
         if (productDescriptionElem) productDescriptionElem.textContent = loadedProduct.description || 'No description available.';
-        
+
         // Correctly target the span elements for product details and log their content
         const productCategorySpan = document.querySelector('#product-category');
         if (productCategorySpan) {
@@ -371,7 +392,7 @@ function loadProductDetails() {
         } else {
             console.error('Error: #product-manufacturer span not found!');
         }
-        
+
         const productMaterialSpan = document.querySelector('#product-material');
         if (productMaterialSpan) {
             productMaterialSpan.textContent = loadedProduct.material || 'N/A';
@@ -412,10 +433,54 @@ function loadProductDetails() {
             productDetailsListElem.innerHTML = '<li>No specific additional details.</li>';
         }
 
-        // Set the single main product image
-        const mainImageUrl = loadedProduct.image && loadedProduct.image.length > 0 ? loadedProduct.image[0] : 'assets/placeholder.webp';
-        mainProductImage.src = mainImageUrl;
-        mainProductImage.alt = loadedProduct.name;
+        // Set up image navigation
+        let currentImageIndex = 0;
+        const images = loadedProduct.image || [];
+        
+        function updateMainImage() {
+            // Only update if we have images
+            if (images.length > 0) {
+                mainProductImage.src = images[currentImageIndex];
+                mainProductImage.alt = loadedProduct.name;
+                
+                // Always show navigation buttons if we have more than one image
+                const prevButton = document.getElementById('prev-image-button');
+                const nextButton = document.getElementById('next-image-button');
+                
+                if (prevButton && nextButton && images.length > 1) {
+                    prevButton.style.display = 'block';
+                    nextButton.style.display = 'block';
+                }
+            } else {
+                mainProductImage.src = 'assets/placeholder.webp';
+                mainProductImage.alt = loadedProduct.name;
+            }
+        }
+
+        // Set up click handlers for navigation buttons
+        const prevButton = document.getElementById('prev-image-button');
+        const nextButton = document.getElementById('next-image-button');
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                if (images.length > 1) {
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    updateMainImage();
+                }
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                if (images.length > 1) {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    updateMainImage();
+                }
+            });
+        }
+
+        // Initialize the main image
+        updateMainImage();
 
 
         // Setup Add to Enquiry Button
