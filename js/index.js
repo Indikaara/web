@@ -1,7 +1,15 @@
  document.addEventListener('DOMContentLoaded', function () {
             const header = document.getElementById('main-header');
+            
+            // Handle scroll behavior
             window.addEventListener('scroll', () => {
-                header.classList.toggle('header-scrolled', window.scrollY > 50);
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#331211]/85', 'backdrop-blur-sm', 'shadow-lg');
+                    header.classList.remove('bg-transparent', 'backdrop-blur-0', 'shadow-none');
+                } else {
+                    header.classList.remove('bg-[#331211]/85', 'backdrop-blur-sm', 'shadow-lg');
+                    header.classList.add('bg-transparent', 'backdrop-blur-0', 'shadow-none');
+                }
             });
 
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
