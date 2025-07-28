@@ -501,7 +501,7 @@ rawProductData.products.forEach(category => {
             dimensions: item.dimensionsAvailable ? item.dimensionsAvailable.join(', ') : 'N/A',
             technology: item.weavingTechnique,
             categoryName: itemCategory,
-            stock: item.stock !== undefined ? item.stock : 10 // Default stock to 10 if not specified
+            stock: item.stock !== undefined ? item.stock : 1000 // Default stock to 10 if not specified
         });
     });
 });
