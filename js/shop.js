@@ -317,11 +317,24 @@ function toggleCart() {
     }
 }
 
+function getCategoryFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('category');
+}
+
 // --- Render Products on Shop Page ---
 function renderProducts() {
     if (productGrid) {
         productGrid.innerHTML = ''; // Clear existing products
-        data.allProducts.forEach(product => { // Use data.allProducts
+        const selectedCategory = getCategoryFromUrl();
+        let filteredProducts = data.allProducts;
+        if (selectedCategory) {
+            filteredProducts = data.allProducts.filter(product => {
+                // Normalize for spaces and case
+                return product.categoryName && product.categoryName.replace(/\s+/g, ' ').trim().toLowerCase() === selectedCategory.replace(/%20/g, ' ').trim().toLowerCase();
+            });
+        }
+        filteredProducts.forEach(product => { // Use data.allProducts
             const productCardHTML = `
                 <div class="product-card bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col">
                     <a href="product-detail.html?id=${product.id}" class="block">

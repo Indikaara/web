@@ -620,3 +620,30 @@ document.addEventListener('DOMContentLoaded', function () {
         renderCart(); // Re-render cart when item is removed
     });
 });
+ // JavaScript for Navbar Transparency on Scroll/Hover
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('main-header'); // Assuming your header has id="main-header"
+
+            if (navbar) {
+                // Function to update navbar state
+                function updateNavbarState() {
+                    if (window.scrollY > 50 || navbar.matches(':hover')) {
+                        navbar.classList.remove('transparent');
+                        navbar.classList.add('scrolled'); // Use 'scrolled' class for both scrolled and hovered visible state
+                    } else {
+                        navbar.classList.add('transparent');
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+
+                // Initial check for scroll position on load
+                updateNavbarState();
+
+                // Event listener for scroll
+                window.addEventListener('scroll', updateNavbarState);
+
+                // Event listener for hover (mouse enter/leave)
+                navbar.addEventListener('mouseenter', updateNavbarState);
+                navbar.addEventListener('mouseleave', updateNavbarState);
+            }
+        });
