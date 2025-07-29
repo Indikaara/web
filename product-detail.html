@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/product-detail.css">
     <style>
+        /* Inline styles for product image container and zoom for specific overrides */
         .product-image-container {
             width: 100%;
             border-radius: 8px;
@@ -41,7 +42,7 @@
 </head>
 <body class="antialiased">
 
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#331211]/85 backdrop-blur-sm shadow-lg">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 navbar transparent">
         <div class="container mx-auto px-6 h-16 flex justify-between items-center text-sm">
             <a href="index.html" class="flex items-center">
                 <img src="assets/logo.png" alt="Indikaara - From Kala to Karya" class="h-[3.3rem]">
@@ -54,8 +55,9 @@
                 <a href="index.html#reviews" class="text-gray-300 hover:text-white transition-colors">Reviews</a>
             </nav>
             <div class="flex items-center">
-                <button id="cart-button" class="relative btn-primary font-semibold py-2 md:py-2 px-4 md:px-6 rounded-full text-xs md:text-sm shadow-md hover:shadow-lg">
-                    Enquiry Cart
+                <button id="cart-button" class="relative btn-primary font-semibold py-2 rounded-full text-xs shadow-md hover:shadow-lg px-3 sm:px-4">
+                    <span class="hidden sm:inline">Enquiry Cart</span>
+                    <span class="sm:hidden">Enquiry Cart</span>
                     <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
                  <button id="mobile-menu-button-detail" class="md:hidden text-white ml-4 focus:outline-none">
@@ -111,18 +113,23 @@
                         <div><strong>Colors</strong><span id="product-color"></span></div>
                     </div>
 
-                    <div id="product-long-details" class="mt-8">
-                        <h3 class="text-xl font-semibold text-white mb-3">Additional Details:</h3>
-                        <ul id="product-details-list" class="product-long-details">
-                            </ul>
-                    </div>
-
-                    <div id="product-story" class="mt-8">
-                        <h3 class="text-xl font-semibold text-white mb-3">Our Story Behind This Piece:</h3>
-                        <p id="product-story-content" class="text-gray-300 leading-relaxed"></p> </div>
-
+                    <!-- Moved 'add-to-enquiry-button' div here -->
                     <div class="mt-8 pt-6 border-t border-gray-700">
                         <button id="add-to-enquiry-button" class="w-full btn-primary py-2 md:py-3 rounded-lg text-base md:text-lg font-semibold">Add to Enquiry List</button>
+                    </div>
+
+                    <!-- Enhanced 'product-long-details' section -->
+                    <div id="product-long-details" class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">Additional Details:</h3>
+                        <ul id="product-details-list" class="list-disc list-inside text-gray-300 space-y-2">
+                            <!-- Details will be dynamically inserted here as <li> items -->
+                        </ul>
+                    </div>
+
+                    <!-- Enhanced 'product-story' section -->
+                    <div id="product-story" class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">Our Story Behind This Piece:</h3>
+                        <p id="product-story-content" class="text-gray-300 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
@@ -208,5 +215,34 @@
         </div>
     </div>
     <script src="js/product-detail.js" type="module"></script>
+    <script>
+        // JavaScript for Navbar Transparency on Scroll/Hover
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('main-header'); // Assuming your header has id="main-header"
+
+            if (navbar) {
+                // Function to update navbar state
+                function updateNavbarState() {
+                    if (window.scrollY > 50 || navbar.matches(':hover')) {
+                        navbar.classList.remove('transparent');
+                        navbar.classList.add('scrolled'); // Use 'scrolled' class for both scrolled and hovered visible state
+                    } else {
+                        navbar.classList.add('transparent');
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+
+                // Initial check for scroll position on load
+                updateNavbarState();
+
+                // Event listener for scroll
+                window.addEventListener('scroll', updateNavbarState);
+
+                // Event listener for hover (mouse enter/leave)
+                navbar.addEventListener('mouseenter', updateNavbarState);
+                navbar.addEventListener('mouseleave', updateNavbarState);
+            }
+        });
+    </script>
 </body>
 </html>

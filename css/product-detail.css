@@ -107,6 +107,7 @@ body {
     color: #fff;
 }
 
+/* Original product-long-details styles (now overridden by Tailwind classes in HTML for aesthetics) */
 .product-long-details ul {
     list-style: disc;
     padding-left: 1.5rem;
@@ -156,3 +157,51 @@ body {
     transform: scale(2);
 }
 
+/* Navbar Transparency Styles */
+.navbar.transparent {
+    background-color: rgba(0, 0, 0, 0) !important; /* Fully transparent background */
+    box-shadow: none !important; /* Remove any shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.navbar.scrolled,
+.navbar.hovered { /* Added .navbar.hovered for explicit hover state */
+    background-color: rgba(30, 41, 59, 0.9) !important; /* Semi-transparent dark background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Re-add a subtle shadow */
+}
+
+       /* Inline styles for product image container and zoom for specific overrides */
+        .product-image-container {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background-color: #4A2220;
+            overflow: hidden;
+        }
+
+        .image-zoom-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        .image-zoom-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform-origin: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .image-zoom-wrapper:hover img {
+            transform: scale(2);
+        }
+
+@media (max-width: 370px) {
+  #cart-button {
+    font-size: 0.6rem !important;
+    padding: 0.3rem 0.8rem !important;
+  }
+}
