@@ -132,8 +132,7 @@ function initializeEnquiryFormModal() {
                         <div class="mb-6">
                             <h3 class="text-lg font-semibold mb-3">Items in Your Enquiry List:</h3>
                             <ul id="enquiry-form-items-list" class="list-disc list-inside text-gray-300 max-h-48 overflow-y-auto p-2 rounded-md bg-gray-800 border border-gray-700">
-                                <!-- Cart items will be dynamically inserted here -->
-                            </ul>
+                                </ul>
                         </div>
                         <button type="submit" id="enquiry-form-submit-button" class="w-full btn-primary py-3 rounded-lg text-lg font-semibold">Submit Enquiry</button>
                     </form>
@@ -335,22 +334,23 @@ function renderProducts() {
             });
         }
         filteredProducts.forEach(product => { // Use data.allProducts
+            // FIX: Prepend a '/' to the image path to make it root-relative for more reliable loading.
+            const imagePath = product.image && product.image.length > 0 ? '/' + product.image[0] : 'assets/placeholder.webp';
+            
             const productCardHTML = `
                 <div class="product-card bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col">
                     <a href="product-detail.html?id=${product.id}" class="block">
                         <div class="product-card-image-wrapper">
-                            <img src="${product.image[0] || 'assets/placeholder.webp'}" alt="${product.name}" class="w-full h-full object-contain rounded-t-lg">
+                            <img src="${imagePath}" alt="${product.name}" class="w-full h-full object-contain rounded-t-lg">
                         </div>
                         <h3 class="text-xl font-semibold mt-4 text-white">${product.name}</h3>
                     </a>
-                    <!-- Removed product description -->
                     <ul class="product-details-list mt-2">
                         <li><strong>Material:</strong> ${product.material}</li>
                         <li><strong>Technique:</strong> ${product.weavingTechnique}</li>
                         <li><strong>Dimensions:</strong> ${product.dimensions}</li>
                     </ul>
                     <div class="mt-4 flex justify-between items-center">
-                        <!-- Removed product price -->
                         <a href="product-detail.html?id=${product.id}" class="btn-primary py-2 px-4 rounded-full text-sm font-semibold">
                             View Details
                         </a>
