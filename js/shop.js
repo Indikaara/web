@@ -347,7 +347,7 @@ function renderProducts() {
                     </a>
                     <ul class="product-details-list mt-2">
                         <li><strong>Material:</strong> ${product.material}</li>
-                        <li><strong>Technique:</strong> ${product.weavingTechnique}</li>
+                        ${product.weavingTechnique ? `<li><strong>Technique:</strong> ${product.weavingTechnique}</li>` : ''}
                         <li><strong>Dimensions:</strong> ${product.dimensions}</li>
                     </ul>
                     <div class="mt-4 flex justify-between items-center">
