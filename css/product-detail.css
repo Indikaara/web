@@ -1,203 +1,215 @@
 /* web/css/product-detail.css */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #331211;
-    color: #fff;
+  font-family: "Inter", sans-serif;
+  background-color: #331211;
+  color: #fff;
 }
 
 /* Font Classes */
 .font-calligraphy {
-    font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
 }
 
 .font-display {
-    font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 /* Product Image and Zoom Styles */
 .product-image-container {
-    width: 100%;
-    min-height: 400px;
-    max-height: 600px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    background-color: #4A2220;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  min-height: 400px;
+  max-height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: #4a2220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #image-zoom-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #main-product-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform-origin: center;
-    will-change: transform;
-    transition: transform 200ms ease-out;
-    background-color: #2a0e0e;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+  will-change: transform;
+  transition: transform 200ms ease-out;
+  background-color: #2a0e0e;
 }
 
 /* Button Styles */
 .btn-primary {
-    background-color: #AC1F23;
-    color: white;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ac1f23;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #DDB386;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background-color: #ddb386;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Cart Panel Styles */
 #cart-panel {
-    transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .cart-item-quantity input {
-    background-color: #331211;
-    color: #fff;
+  background-color: #331211;
+  color: #fff;
 }
 
 /* Product Details Styles */
 .product-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: #4A2220;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #4a2220;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .product-details-grid div strong {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: #e0e0e0;
-    font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #e0e0e0;
+  font-size: 0.95rem;
 }
 
 .product-details-grid div span {
-    color: #d0d0d0;
-    font-size: 0.9rem;
+  color: #d0d0d0;
+  font-size: 0.9rem;
 }
 
 /* Product Info Styles */
 .product-info-area p {
-    color: #e0e0e0;
+  color: #e0e0e0;
 }
 
-.product-info-area h1, 
+.product-info-area h1,
 .product-info-area h3 {
-    color: #fff;
+  color: #fff;
 }
 
 /* Original product-long-details styles (now overridden by Tailwind classes in HTML for aesthetics) */
 .product-long-details ul {
-    list-style: disc;
-    padding-left: 1.5rem;
-    margin-top: 0.5rem;
-    color: #d0d0d0;
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  color: #d0d0d0;
 }
 
 .product-long-details li {
-    margin-bottom: 0.5rem;
-    color: inherit;
+  margin-bottom: 0.5rem;
+  color: inherit;
 }
 
 /* Thumbnail Carousel Styles */
 .thumbnail-scroll-container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .thumbnail-scroll-container::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .thumbnail-image.active {
-    border: 2px solid #AC1F23;
-    box-shadow: 0 0 0 2px #AC1F23;
+  border: 2px solid #ac1f23;
+  box-shadow: 0 0 0 2px #ac1f23;
 }
 
 /* Image Zoom Hover Effect */
 .image-zoom-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    cursor: zoom-in;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
 }
 
 .image-zoom-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform-origin: center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .image-zoom-wrapper:hover img {
-    transform: scale(2);
+  transform: scale(2);
 }
 
 /* Navbar Transparency Styles */
 .navbar.transparent {
-    background-color: rgba(0, 0, 0, 0) !important; /* Fully transparent background */
-    box-shadow: none !important; /* Remove any shadow */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ) !important; /* Fully transparent background */
+  box-shadow: none !important; /* Remove any shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
 .navbar.scrolled,
-.navbar.hovered { /* Added .navbar.hovered for explicit hover state */
-    background-color: rgba(30, 41, 59, 0.9) !important; /* Semi-transparent dark background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Re-add a subtle shadow */
+.navbar.hovered {
+  /* Added .navbar.hovered for explicit hover state */
+  background-color: rgba(
+    30,
+    41,
+    59,
+    0.9
+  ) !important; /* Semi-transparent dark background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Re-add a subtle shadow */
 }
 
-       /* Inline styles for product image container and zoom for specific overrides */
-        .product-image-container {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            background-color: #4A2220;
-            overflow: hidden;
-        }
+/* Inline styles for product image container and zoom for specific overrides */
+.product-image-container {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: #4a2220;
+  overflow: hidden;
+}
 
-        .image-zoom-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            cursor: zoom-in;
-        }
+.image-zoom-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+}
 
-        .image-zoom-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform-origin: center;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
+.image-zoom-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
 
-        .image-zoom-wrapper:hover img {
-            transform: scale(2);
-        }
+.image-zoom-wrapper:hover img {
+  transform: scale(2);
+}
 
 @media (max-width: 370px) {
   #cart-button {

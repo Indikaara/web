@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
         renderCart(); // Re-render cart after product is added
     });
 
-    document.addEventListener('productEnquiryError', (event) => {
+                                      document.addEventListener('productEnquiryError', (event) => {
         console.error('productEnquiryError event received!', event.detail); // Debug log
         showGeneralModal(`Error: ${event.detail.message}`);
     });
