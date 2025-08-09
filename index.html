@@ -18,7 +18,7 @@
 </head>
 
 <body class="antialiased">
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#331211] backdrop-blur-0 hover:backdrop-blur-sm shadow-none hover:shadow-lg group">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-[#331211] shadow-lg group">
         <div class="container mx-auto px-6 h-16 flex justify-between items-center text-sm">
             <a href="index.html" class="flex items-center">
                 <img src="assets/logo.png" alt="Indikaara - From Kala to Karya" class="h-[3.3rem]">
@@ -61,7 +61,7 @@
         </div>
 
         <div id="mobile-menu"
-            class="hidden md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md pb-4 pt-2 text-center shadow-lg z-40">
+             class="hidden md:hidden absolute top-16 left-0 w-full bg-[#331211] pb-4 pt-2 text-center shadow-lg z-40">
             <nav class="flex flex-col items-center space-y-4 text-base">
                 <a href="category-select.html" class="text-gray-300 hover:text-white transition-colors py-2 block w-full">Our
                     Collections</a>
@@ -395,7 +395,8 @@
                 </div>
             </div>
         </div>
-        <script src="js/index.js" type="module"></script>
+    <script src="js/index.js" type="module"></script>
+    <!-- No JS needed: navbar background is always theme color -->
 </body>
 
 </html>
