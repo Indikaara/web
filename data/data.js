@@ -319,7 +319,7 @@ export const rawProductData = {
           image: [
             "assets/products/rugs/mirzapur_rugs/omara/1.webp",
             "assets/products/rugs/mirzapur_rugs/omara/2.webp",
-            "asset/rugs/mirzapur_rugs/omara/3.webp",
+            "assets/products/rugs/mirzapur_rugs/omara/3.webp",
             "assets/products/rugs/mirzapur_rugs/omara/4.webp",
           ],
           story:
@@ -641,9 +641,12 @@ export const rawProductData = {
           name: "Metal Wall Hanging Bullet Motorcycle",
           price: 2950,
           priceRange: null,
-          image: ["assets/products/wall_hanging/vintage_crafts/bullet_motorcycle/1.jpg", "assets/products/wall_hanging/vintage_crafts/bullet_motorcycle/2.jpg"],
+          image: [
+            "assets/products/wall_hanging/vintage_crafts/bullet_motorcycle/1.jpg", 
+            "assets/products/wall_hanging/vintage_crafts/bullet_motorcycle/2.jpg"
+          ],
           description: "Enhance your living space with this unique Metal Wall Hanging Bullet Motorcycle. This handcrafted piece adds a rustic, vintage charm to any room. The vibrant blue and detailed design make it a captivating focal point, perfect for a bedroom, garage, or man cave. Made from durable metal, it's a stylish statement piece that reflects your passion for classic bikes.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Length: 60cm, Width: 3cm, Height: 35cm"],
           details: [
             "Use : Indoor use only",
@@ -662,9 +665,11 @@ export const rawProductData = {
           name: "Metal Wall Hanging Vintage Car",
           price: 2950,
           priceRange: null,
-          image: ['assets/products/wall_hanging/vintage_crafts/vintage_car/1.jpg'],
+          image: [
+            'assets/products/wall_hanging/vintage_crafts/vintage_car/1.jpg'
+          ],
           description: "Enhance your living space with this unique Metal Wall Hanging Vintage Car. This handcrafted piece adds a rustic, vintage charm to any room. The vibrant blue and detailed design make it a captivating focal point, perfect for a bedroom, garage, or man cave. Made from durable metal, it's a stylish statement piece that reflects your passion for classic cars.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Length: 23cm, Width: 5cm, Height: 50cm"],
           details: [
             "Use : Indoor use only",
@@ -685,7 +690,7 @@ export const rawProductData = {
           priceRange: null,
           image: ['assets/products/wall_hanging/vintage_crafts/cycle/1.jpg'],
           description: "Enhance your living space with this unique Metal Wall Hanging Cycle. This handcrafted piece adds a rustic, vintage charm to any room. The vibrant blue and detailed design make it a captivating focal point, perfect for a bedroom, garage, or man cave. Made from durable metal, it's a stylish statement piece that reflects your passion for classic cycles.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Length: 48 x Width: 9 x Height: 33 cm"],
           details: [
             "Use : Indoor use only",
@@ -706,7 +711,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/wall_hanging/vintage_crafts/motorcycle_american/1.jpg", "assets/products/wall_hanging/vintage_crafts/motorcycle_american/2.jpg"],
           description: "Enhance your living space with this unique Metal Wall Mounted Motor Bike. This handcrafted piece adds a rustic, vintage charm to any room. The vibrant blue and detailed design make it a captivating focal point, perfect for a bedroom, garage, or man cave. Made from durable metal, it's a stylish statement piece that reflects your passion for classic bikes.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Length: 60 inches, Height: 34 inches"],
           details: [
             "Use : Indoor use only",
@@ -727,7 +732,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/wall_hanging/vintage_crafts/wall_clock/1.jpg", "assets/products/wall_hanging/vintage_crafts/wall_clock/2.jpg"],
           description: "Adorn your space with this captivating Wooden Wall Clock, blending classic Roman numerals with exposed industrial gears for a truly unique aesthetic. Crafted from high-quality wood, this 24x24 inch timepiece is more than just a clock; it's a statement piece. Its intricate design and rustic charm make it a perfect addition to any living room, office, or hallway, adding a touch of vintage elegance and mechanical intrigue to your décor.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["24x24 inches"],
           details: [
             "Use : Indoor use only",
@@ -748,7 +753,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/wall_hanging/vintage_crafts/elephant_head/1.jpg"],
           description: "Elephant Majesty for Every Space: Unwrap the allure of our exquisite elephant head showpiece. Perfect for gifting sophistication or adorning walls with a touch of majestic charm. Elevate your decor game!",
-          story: "",
+          story: null,
           dimensionsAvailable: ["16 inches"],
           details: [
             "Use : Indoor use only",
@@ -769,7 +774,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/wall_hanging/vintage_crafts/wooden_wall_clock/1.jpg"],
           description: "Elevate your space with our 14-inch Vintage Wooden Wall Clock, a charming blend of timeless design and practical functionality. Crafted with care, this exquisite clock boasts a warm wooden finish that exudes elegance and nostalgia. The generous 14-inch size ensures it catches the eye, while the classic Roman numerals and ornate clock hands lend a touch of vintage sophistication to any room. Whether it graces your living room, kitchen, or office, this wall clock adds a distinctive character to your decor, evoking the beauty of days gone by. Bring the allure of vintage charm into your life with this stunning timepiece, a true conversation starter that keeps you on schedule in style.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["14 inches"],
           details: [
             "Use : Indoor use only",
@@ -790,7 +795,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/wall_hanging/vintage_crafts/wall_clock_train_engine/1.jpg"],
           description: "Elevate your space with the timeless charm of our Vintage Metal Train Engine Design Wall Clock. This exquisite timepiece boasts a beautifully handcrafted design inspired by the majestic trains of yesteryears. Measuring 12 inches in diameter, the clock’s dial showcases intricate detailing, capturing the essence of a bygone era.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["12 inches"],
           details: [
             "Use : Indoor use only",
@@ -810,13 +815,13 @@ export const rawProductData = {
           price: 1300,
           priceRange: null,
           image: [
-            "assets/products/wall_hanging/vintage_crafts/wall_clock_vintage_wood/1.jpg", 
+            "assets/products/wall_hanging/vintage_crafts/wall_clock_vintage_wood/1.jpg",
             "assets/products/wall_hanging/vintage_crafts/wall_clock_vintage_wood/2.jpg",
             "assets/products/wall_hanging/vintage_crafts/wall_clock_vintage_wood/3.jpg",
             "assets/products/wall_hanging/vintage_crafts/wall_clock_vintage_wood/4.jpg"
-            ],
+          ],
           description: "Introducing our exquisite Vintage Wooden Wall Clock, a timeless piece that adds a touch of elegance to any living space. Crafted with care and attention to detail, this hand-crafted clock measures 14 inches, making it the perfect statement piece for your home or office.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["14 inches"],
           details: [
             "Use : Indoor use only",
@@ -836,10 +841,10 @@ export const rawProductData = {
           price: 1300,
           priceRange: null,
           image: [
-            "assets/products/wall_hanging/vintage_crafts/wall_clock_metal_big_size/1.jpg", 
-            ],
+            "assets/products/wall_hanging/vintage_crafts/wall_clock_metal_big_size/1.jpg",
+          ],
           description: "Introducing our stunning 24-inch Big Size Metal Wall Clock, the perfect centerpiece for any room! Crafted with precision and designed to make a statement, this impressive timepiece combines functionality with elegance.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["24 inches"],
           details: [
             "Use : Indoor use only",
@@ -866,7 +871,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/vintage_tripod_fan/1.jpg"],
           description: "Feel the breeze of the past with this retro masterpiece. A vintage tripod fan that makes any room unforgettable.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 4 ft"],
           details: [
             "Use : Indoor use only",
@@ -887,7 +892,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/panther_head_showpiece/1.jpg"],
           description: "Indulge in the essence of the wild with our Panther Head Showpiece, meticulously handcrafted to perfection. Crafted from premium resin, its intricate details and lifelike features capture the essence of the majestic panther. Standing tall at 13 inches, it commands attention and admiration, serving as a captivating centerpiece for any room. Ideal for gifting, it embodies strength and grace, making it a thoughtful gesture for loved ones who appreciate timeless beauty. Elevate your space with the allure of the panther, a symbol of elegance and power, embodied in this exquisite showpiece.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 13 inches"],
           details: [
             "Use : Indoor use only",
@@ -908,7 +913,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/bioscope_with_gramophone/1.jpg"],
           description: "Revive the Romance of Classic Eras: Our Vintage Gramophone with Bioscope – A Melody for Your Ears, a Cinematic Journey for Your Soul.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["12 x 10 inches"],
           details: [
             "Use : Indoor use only",
@@ -928,16 +933,16 @@ export const rawProductData = {
           price: 1200,
           priceRange: null,
           image: [
-            "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/1.jpg", 
+            "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/1.jpg",
             "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/2.jpg",
             "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/3.jpg",
             "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/4.jpg",
             "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/5.jpg",
             "assets/products/home_decor/vintage_crafts/ramayan_theme_elephant_showpiece/6.jpg",
-            
+
           ],
           description: "Bring the essence of ancient mythology into your home or gift a piece of cultural heritage to a loved one. With this Ramayana-themed elephant showpiece, you're not just acquiring a decor item but a tangible connection to the timeless narratives that have shaped generations. Elevate your space with the spirit of the Ramayana, embodied in this exquisite handcrafted showpiece.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 5 inches"],
           details: [
             "Use : Indoor use only",
@@ -958,7 +963,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/brass_tripod_telescope/1.jpg"],
           description: "This handcrafted brass tripod telescope is a stunning blend of vintage charm and intricate craftsmanship. The telescope features a beautifully engraved leather-wrapped body and is mounted on a functional brass tripod. It's a perfect decorative piece for a study or office, adding a touch of classic elegance and old-world exploration.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 12 inches"],
           details: [
             "Use : Indoor use only",
@@ -979,7 +984,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/vintage_tripod_camera/1.jpg"],
           description: "This Vintage Tripod Camera is a beautifully crafted dummy showpiece, perfect for adding a retro touch to any room. Made to resemble a classic camera, it features intricate detailing and a stylish tripod stand. This 11-inch decorative piece is ideal for collectors or anyone seeking a unique, vintage-inspired accent.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 11 inches"],
           details: [
             "Use : Indoor use only",
@@ -1000,7 +1005,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/walking_panther_showpiece/1.jpg", "assets/products/home_decor/vintage_crafts/walking_panther_showpiece/2.jpg"],
           description: "Elevate your decor with our stunning Panther Showpiece. Crafted from high-quality resin, it features intricate details that capture the power and elegance of the panther. This eye-catching sculpture adds a touch of wild beauty to any space, making it an ideal gift or a bold centerpiece for your home. Standing 16 inches tall, it's a timeless statement piece that exudes both strength and grace.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 16 inches"],
           details: [
             "Use : Indoor use only",
@@ -1021,7 +1026,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/vintage_typewriter_showpiece/1.jpg"],
           description: "Revive the past and adorn your space with our Vintage Typewriter Showpiece, a true masterpiece of decor. Crafted from iron and measuring 10x10x10 inches, it exudes an authentic antique charm that effortlessly enhances any room. Immerse yourself in the elegance of a bygone era with this unique typewriter showpiece.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["10x10x10 inches"],
           details: [
             "Use : Indoor use only",
@@ -1042,7 +1047,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/wooden_telephone/1.jpg"],
           description: "This 12-inch Wooden Telephone is a striking blend of vintage aesthetics and fine craftsmanship. Made from wood and brass, it features a classic rotary dial design and a substantial handset. This decorative piece adds a touch of historical elegance and nostalgia to any home or office decor.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["Height: 12 inches"],
           details: [
             "Use : Indoor use only",
@@ -1063,7 +1068,7 @@ export const rawProductData = {
           priceRange: null,
           image: ["assets/products/home_decor/vintage_crafts/brass_chess_set/1.jpg"],
           description: "This exquisite 16x16 inch Brass Chess set is a blend of artistry and classic game play. It features a finely crafted wooden box that serves as the chessboard, complete with detailed brass coins. Each piece showcases intricate detail, making this not just a game, but a statement piece for any collector or enthusiast.",
-          story: "",
+          story: null,
           dimensionsAvailable: ["16 x 16 inches"],
           details: [
             "Use : Indoor use only",
