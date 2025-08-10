@@ -4,7 +4,42 @@ body {
   background-color: #331211;
   color: #fff;
 }
+.product-image-container {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: #4a2220;
+  overflow: hidden;
+}
+.brand-name {
+  display: inline-block;
+  min-width: 120px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ddb386;
+  letter-spacing: 1px;
+  vertical-align: middle;
+  transition: color 0.3s;
+}
+.image-zoom-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+}
 
+.image-zoom-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.image-zoom-wrapper:hover img {
+  transform: scale(2);
+}
 /* Font Classes */
 .font-calligraphy {
   font-family: "Great Vibes", cursive;

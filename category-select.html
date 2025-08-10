@@ -9,14 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shop.css">
+         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <link rel="icon" href="assets/Jpeg-01.jpg" type="image/jpg"> 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body class="antialiased">
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent hover:bg-[#331211]/85 backdrop-blur-0 hover:backdrop-blur-sm shadow-none hover:shadow-lg group">
         <div class="container mx-auto px-6 h-16 flex justify-between items-center text-sm">
-            <a href="index.html" class="flex items-center">
-                <img src="assets/logo.png" alt="Indikaara - From Kala to Karya" class="h-[3.3rem]">
+             <a href="index.html" class="flex items-center">
+                <img src="assets/logo2.png" alt="Indikaara - From Kala to Karya" class="h-[3.3rem]">
+                <!-- <img src="assets/Png-04.png" alt="Indikaara - From Kala to Karya" class="h-[3.3rem]"> -->
+                <span class="brand-name">Indikaara</span>
             </a>
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
@@ -47,6 +52,7 @@
                 <a href="index.html#global-reach" class="text-gray-300 hover:text-white transition-colors py-2 block w-full">Global Reach</a>
                 <a href="index.html#reviews" class="text-gray-300 hover:text-white transition-colors py-2 block w-full">Reviews</a>
             </nav>
+    <link rel="icon" href="assets/Jpeg-01.jpg" type="image/jpg">
         </div>
     </header>
     <main>
@@ -56,7 +62,7 @@
                 <p class="mt-4 text-xl md:text-xl text-gray-300 max-w-2xl mx-auto">Explore our curated collections by category</p>
             </div>
         </section>
-        <section id="select-category-card" class="py-16 bg-[url('assets/category-select-bg.jpg')] bg-cover bg-center bg-no-repeat>
+        <section id="select-category-card" class="py-16">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
                     <a href="shop.html?category=Rugs" class="category-card category-rugs block px-8 py-[49.92px] rounded-2xl shadow-lg text-center bg-[#4A2220] text-black text-2xl font-semibold transition-transform hover:scale-105 hover:bg-[#AC1F23] w-4/5 mx-auto bg-[url('assets/category-rugs.png')] bg-cover bg-center">Rugs</a>
@@ -140,5 +146,36 @@
         </div>
     </div>
     <script src="js/shop.js" type="module"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                gsap.registerPlugin(TextPlugin);
+                const names = [
+              'இந்திகார', // Tamil
+                  'इंडिकारा', // Hindi
+                  'ইন্দিকার', // Bangla
+                  'انڈیکارا۔', // Urdu
+                  'Indikaara' // English fallback
+                ];
+                let i = 0;
+                const brandEl = document.querySelector('.brand-name');
+                if (!brandEl) {
+                  console.error('No element with class .brand-name found');
+                  return;
+                }
+                function animateBrandName() {
+                  gsap.to(brandEl, {duration: 0.4, x: 60, opacity: 0, ease: 'power1.in', onComplete: function() {
+                    if (i === names.length - 1) {
+                      brandEl.innerHTML = '<img src="assets/Png-04.png" alt="Indikaara Logo" style="height:1.7em;vertical-align:middle;display:inline-block;">';
+                    } else {
+                      brandEl.textContent = names[i];
+                    }
+                    gsap.fromTo(brandEl, {x: -60, opacity: 0}, {duration: 0.4, x: 0, opacity: 1, ease: 'power1.out'});
+                  }});
+                  i = (i + 1) % names.length;
+                  setTimeout(animateBrandName, 1200);
+                }
+                animateBrandName();
+            });
+        </script>
 </body>
 </html> 

@@ -1,167 +1,178 @@
 /* web/css/shop.css */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #331211; /* Changed to dark brown from the theme */
-    color: #fff; /* Light text color */
+  font-family: "Inter", sans-serif;
+  background-color: #331211; /* Changed to dark brown from the theme */
+  color: #fff; /* Light text color */
 }
 
 .font-calligraphy {
-    font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
 }
 
 .font-display {
-    font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .btn-primary {
-    background-color: #AC1F23; /* Changed to red from the theme */
-    color: white;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ac1f23; /* Changed to red from the theme */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
-
+.brand-name {
+  display: inline-block;
+  min-width: 120px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ddb386;
+  letter-spacing: 1px;
+  vertical-align: middle;
+  transition: color 0.3s;
+}
 .btn-primary:hover {
-    background-color: #DDB386; /* Changed to light brown/beige from the theme */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background-color: #ddb386; /* Changed to light brown/beige from the theme */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 #cart-panel {
-    transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .cart-item-quantity input {
-    background-color: #331211; /* Darker input background for cart, using theme dark brown */
-    color: #fff; /* Light text for cart input */
+  background-color: #331211; /* Darker input background for cart, using theme dark brown */
+  color: #fff; /* Light text for cart input */
 }
 
 /* Product Card Styling (Adjusted for Dark Theme and Image Visibility) */
 .product-card {
-    background-color: #4A2220; /* Slightly lighter shade of the main dark brown for contrast, or a complementary dark color */
-    color: #fff; /* Light text for card */
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Darker shadow for dark background */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+  background-color: #4a2220; /* Slightly lighter shade of the main dark brown for contrast, or a complementary dark color */
+  color: #fff; /* Light text for card */
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Darker shadow for dark background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    transform: scale(1.04);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+  transform: translateY(-5px);
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
 }
 
 .product-card h3 {
-    color: #fff; /* Ensure heading is white for contrast */
+  color: #fff; /* Ensure heading is white for contrast */
 }
 
 .product-card p {
-    color: #e0e0e0; /* Lighter gray for paragraphs for contrast, for better readability against a dark brown */
+  color: #e0e0e0; /* Lighter gray for paragraphs for contrast, for better readability against a dark brown */
 }
 
 .product-card strong {
-    color: #fff; /* Strong tags are white for contrast */
+  color: #fff; /* Strong tags are white for contrast */
 }
 
 /* New image wrapper for product cards to ensure aspect ratio and object-fit */
 .product-card-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* 1:1 Aspect Ratio (Square container) */
-    overflow: hidden;
-    background-color: #331211; /* Dark background for image area, using theme dark brown */
-    border-top-left-radius: 0.5rem; /* Match card radius */
-    border-top-right-radius: 0.5rem; /* Match card radius */
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* 1:1 Aspect Ratio (Square container) */
+  overflow: hidden;
+  background-color: #331211; /* Dark background for image area, using theme dark brown */
+  border-top-left-radius: 0.5rem; /* Match card radius */
+  border-top-right-radius: 0.5rem; /* Match card radius */
 }
 
 .product-card-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure whole image is visible */
-    background-color: #2a0e0e; /* Darker image background behind image, slightly darker than main body */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure whole image is visible */
+  background-color: #2a0e0e; /* Darker image background behind image, slightly darker than main body */
 }
 
 /* Keeping carousel styles for robustness (if featured products section is unhidden) */
 .carousel-container {
-    position: relative;
+  position: relative;
 }
 
 .carousel-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .carousel-track::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .carousel-slide {
-    flex: 0 0 90%;
-    scroll-snap-align: center;
-    padding: 0 1rem;
+  flex: 0 0 90%;
+  scroll-snap-align: center;
+  padding: 0 1rem;
 }
 
 @media (min-width: 768px) {
-    .carousel-slide {
-        flex: 0 0 45%;
-    }
+  .carousel-slide {
+    flex: 0 0 45%;
+  }
 }
 
 @media (min-width: 1024px) {
-    .carousel-slide {
-        flex: 0 0 30%;
-    }
+  .carousel-slide {
+    flex: 0 0 30%;
+  }
 }
 
 .product-details-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #d0d0d0; /* Adjusted for better visibility against dark brown */
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #d0d0d0; /* Adjusted for better visibility against dark brown */
 }
 
 .product-details-list li {
-    margin-bottom: 0.25rem;
-    line-height: 1.25;
+  margin-bottom: 0.25rem;
+  line-height: 1.25;
 }
 
 .product-details-list li strong {
-    color: #fff;
+  color: #fff;
 }
 
 /* Category Button Active State (Styling kept if re-enabled in future) */
 .category-button {
-    background-color: #4A2220; /* Using a slightly lighter shade of the main dark brown */
-    color: #e0e0e0;
-    border-color: #66332F; /* Complementary border color */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  background-color: #4a2220; /* Using a slightly lighter shade of the main dark brown */
+  color: #e0e0e0;
+  border-color: #66332f; /* Complementary border color */
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .category-button:hover {
-    background-color: #66332F; /* Darker on hover */
-    color: #fff;
+  background-color: #66332f; /* Darker on hover */
+  color: #fff;
 }
 
 .category-button.active {
-    background-color: #AC1F23; /* Set to red from the theme */
-    color: white;
-    font-weight: 600;
-    border-color: #AC1F23;
+  background-color: #ac1f23; /* Set to red from the theme */
+  color: white;
+  font-weight: 600;
+  border-color: #ac1f23;
 }
 
 /* Specific styling for the catalog section background */
 #catalog {
-    background-color: #331211; /* Set to the dark brown from the theme */
+  background-color: #331211; /* Set to the dark brown from the theme */
 }
 
 @media (max-width: 370px) {

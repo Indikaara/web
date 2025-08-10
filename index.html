@@ -9,6 +9,7 @@
         content="Discover traditional Indian handicraft pieces at Indikaara Exports. Handmade decor & gifts by artisans. Global delivery. Shop authentic crafts today.">
     <title>Buy Authentic Indian Handicrafts Online | Indikaara Exports</title>
     <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="icon" href="assets/Jpeg-01.jpg" type="image/jpg"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -415,10 +416,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 gsap.registerPlugin(TextPlugin);
                 const names = [
-                  'இந்திகார', // Tamil
-                  'ఇంటికారా', // Telugu
-                  'ಇಂಡಿಕಾರ', // Kannada
-                  'ഇന്ദികാര', // Malayalam
+              'இந்திகார', // Tamil
                   'इंडिकारा', // Hindi
                   'ইন্দিকার', // Bangla
                   'انڈیکارا۔', // Urdu
@@ -431,11 +429,14 @@
                   return;
                 }
                 function animateBrandName() {
-                  if (i === names.length - 1) {
-                    brandEl.innerHTML = '<img src="assets/Png-04.png" alt="Indikaara Logo" style="height:1.7em;vertical-align:middle;display:inline-block;">';
-                  } else {
-                    brandEl.textContent = names[i];
-                  }
+                  gsap.to(brandEl, {duration: 0.4, x: 60, opacity: 0, ease: 'power1.in', onComplete: function() {
+                    if (i === names.length - 1) {
+                      brandEl.innerHTML = '<img src="assets/Png-04.png" alt="Indikaara Logo" style="height:1.7em;vertical-align:middle;display:inline-block;">';
+                    } else {
+                      brandEl.textContent = names[i];
+                    }
+                    gsap.fromTo(brandEl, {x: -60, opacity: 0}, {duration: 0.4, x: 0, opacity: 1, ease: 'power1.out'});
+                  }});
                   i = (i + 1) % names.length;
                   setTimeout(animateBrandName, 1200);
                 }
