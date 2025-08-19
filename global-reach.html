@@ -787,7 +787,14 @@
             <ul>
               <li class="mb-2">
                 <a
-                  href="index.html#our-story"
+                  href="blogspot.html"
+                  class="hover:text-white transition-colors"
+                  >Blogs</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="our-story.html"
                   class="hover:text-white transition-colors"
                   >Our Story</a
                 >
@@ -808,6 +815,7 @@
               </li>
             </ul>
           </div>
+          <div>
             <h4 class="font-semibold text-white mb-3">Support</h4>
             <ul>
               <li class="mb-2">
@@ -820,6 +828,13 @@
               <li class="mb-2">
                 <a href="faq.html" class="hover:text-white transition-colors"
                   >FAQ</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="terms-of-service.html"
+                  class="hover:text-white transition-colors"
+                  >Terms of Service</a
                 >
               </li>
             </ul>
@@ -911,10 +926,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         gsap.registerPlugin(TextPlugin);
         const names = [
-          "இந்திகார", // Tamil
           "इंडिकारा", // Hindi
-          "ইন্দিকার", // Bangla
-          "انڈیکارا۔", // Urdu
           "Indikaara", // English fallback
         ];
         let i = 0;
@@ -944,7 +956,7 @@
             },
           });
           i = (i + 1) % names.length;
-          setTimeout(animateBrandName, 1200);
+          setTimeout(animateBrandName, 2000);
         }
         animateBrandName();
       });

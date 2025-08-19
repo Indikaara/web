@@ -23,6 +23,7 @@ const mobileMenuDetail = document.getElementById("mobile-menu-detail");
 const ourStorySection = document.getElementById("product-story");
 const mainProductImage = document.getElementById("main-product-image");
 const productNameElem = document.getElementById("product-name");
+const productPriceElem = document.getElementById("product-price");
 const productDescriptionElem = document.getElementById("product-description");
 const productDetailsListElem = document.getElementById("product-details-list");
 const productStoryElem = document.querySelector("#product-story p");
@@ -487,6 +488,7 @@ function loadProductDetails() {
         document.title = `${loadedProduct.name} - Indikaara`;
 
         if (productNameElem) productNameElem.textContent = loadedProduct.name;
+        if (productPriceElem) productPriceElem.textContent = loadedProduct.displayPrice;
         if (productDescriptionElem)
             productDescriptionElem.textContent =
                 loadedProduct.description || "No description available.";

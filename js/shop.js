@@ -345,6 +345,9 @@ function renderProducts() {
                         </div>
                         <h3 class="text-xl font-semibold mt-4 text-white">${product.name}</h3>
                     </a>
+                    <div class="mt-3 mb-3">
+                        <p class="text-2xl font-bold text-[#DDB386]">${product.displayPrice}</p>
+                    </div>
                     <ul class="product-details-list mt-2">
                         <li><strong>Material:</strong> ${product.material}</li>
                         ${product.weavingTechnique ? `<li><strong>Technique:</strong> ${product.weavingTechnique}</li>` : ''}
