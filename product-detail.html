@@ -203,6 +203,12 @@
               id="product-name"
               class="text-3xl md:text-5xl font-display font-bold text-white mb-2"
             ></h1>
+            <div class="mb-4">
+              <p
+                id="product-price"
+                class="text-3xl md:text-4xl font-bold text-[#DDB386]"
+              ></p>
+            </div>
             <p
               id="product-description"
               class="text-gray-300 leading-relaxed mb-6"
@@ -313,7 +319,14 @@
             <ul>
               <li class="mb-2">
                 <a
-                  href="index.html#our-story"
+                  href="blogspot.html"
+                  class="hover:text-white transition-colors"
+                  >Blogs</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="our-story.html"
                   class="hover:text-white transition-colors"
                   >Our Story</a
                 >
@@ -347,6 +360,13 @@
               <li class="mb-2">
                 <a href="faq.html" class="hover:text-white transition-colors"
                   >FAQ</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="terms-of-service.html"
+                  class="hover:text-white transition-colors"
+                  >Terms of Service</a
                 >
               </li>
             </ul>
@@ -503,10 +523,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         gsap.registerPlugin(TextPlugin);
         const names = [
-          "இந்திகார", // Tamil
           "इंडिकारा", // Hindi
-          "ইন্দিকার", // Bangla
-          "انڈیکارا۔", // Urdu
           "Indikaara", // English fallback
         ];
         let i = 0;
@@ -536,7 +553,7 @@
             },
           });
           i = (i + 1) % names.length;
-          setTimeout(animateBrandName, 1200);
+          setTimeout(animateBrandName, 2000);
         }
         animateBrandName();
       });
