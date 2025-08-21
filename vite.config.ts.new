@@ -1,0 +1,57 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react({
+      // React fast refresh configuration
+      include: '**/*.{jsx,tsx}',
+    }),
+  ],
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss,
+        autoprefixer,
+      ],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  server: {
+    port: 3000,
+    host: true, // Listen on all local IPs
+    strictPort: false,
+    watch: {
+      usePolling: true, // Use polling for better hot reload on some systems
+      interval: 100, // Polling interval
+    },
+    hmr: {
+      overlay: true, // Show errors in browser overlay
+    },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    minify: 'terser',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
+});

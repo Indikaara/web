@@ -1,0 +1,10 @@
+.brand-name {
+  display: inline-block;
+  min-width: 120px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ddb386;
+  letter-spacing: 1px;
+  vertical-align: middle;
+  transition: color 0.3s;
+}
