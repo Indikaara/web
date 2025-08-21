@@ -93,7 +93,7 @@ body {
 }
 
 .collections-background {
-  background-image: url("assets/collections-bg.png"); /* Ensure this path is correct relative to index.html's location */
+  background-image: url("../assets/collections-bg.png"); /* Ensure this path is correct relative to index.html's location */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

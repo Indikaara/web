@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -43,8 +43,6 @@ const timelineEvents: TimelineEvent[] = [
 ];
 
 const OurStory: React.FC = () => {
-  const animatedElements = useRef<HTMLElement[]>([]);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -59,13 +57,13 @@ const OurStory: React.FC = () => {
       }
     );
 
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+    const elementsToAnimate = Array.from(document.querySelectorAll('.animate-on-scroll'));
+    elementsToAnimate.forEach((el) => {
       observer.observe(el);
-      animatedElements.current.push(el as HTMLElement);
     });
 
     return () => {
-      animatedElements.current.forEach((el) => observer.unobserve(el));
+      elementsToAnimate.forEach((el) => observer.unobserve(el));
     };
   }, []);
 

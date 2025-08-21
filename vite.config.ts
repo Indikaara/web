@@ -36,12 +36,11 @@ export default defineConfig({
       }
     }
   },
-  server: {
+    server: {
     port: 3000,
     open: true,
     cors: true,
     middlewareMode: false,
     historyApiFallback: true,
-    open: true,
   },
 });

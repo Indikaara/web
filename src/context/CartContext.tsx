@@ -19,6 +19,7 @@ interface CartContextType {
 }
 
 // Create the context
+// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext<CartContextType>({
   cartItems: [],
   addToCart: () => {},
@@ -32,7 +33,7 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
-export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   // Load cart from localStorage on component mount
@@ -90,3 +91,5 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export default CartProvider;
